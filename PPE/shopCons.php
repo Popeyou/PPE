@@ -82,7 +82,7 @@
             </div>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-                <a href="cart.html" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
+                <a href="panier.php" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
                 <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
             </div>
             <!-- Social Button -->
@@ -165,7 +165,7 @@
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     </div>
                                     <div class="cart">
-                                        <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
+                                        <a href="panier.php" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
                                     </div>
                                 </div>
                             </div>
@@ -202,7 +202,7 @@
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     </div>
                                     <div class="cart">
-                                        <a href="cart.html" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
+                                        <a href="panier.php" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
                                     </div>
                                 </div>
                             </div>
@@ -279,7 +279,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                             <a class="nav-link" href="product-details.html">Product</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="cart.html">Cart</a>
+                                            <a class="nav-link" href="panier.php">Cart</a>
                                         </li>
                                         <li class="nav-item">
                                             <a class="nav-link" href="checkout.html">Checkout</a>
