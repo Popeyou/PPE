@@ -273,14 +273,14 @@ END //
 Delimiter ;
 
 drop trigger if exists verifUpdate;
-delimiter //
+Delimiter //
 create trigger verifUpdate
 after update on materiel
 for each row
-begin
+Begin
 insert into archivmateriel values (old.codeM,old.codeT_M,old.nom,old.notice,old.prix,old.poids,sysdate(),user(),"update");
-end //
-delimiter ;
+End //
+Delimiter ;
 
 drop trigger if exists verifDelete;
 delimiter //
