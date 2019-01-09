@@ -115,7 +115,7 @@ include("controleur/controleur.php")
                     <param name="movie" value="http://www.youtube.com/v/_etwz7NkemE&hl=fr"></param>
                     <param name="wmode" value="transparent"></param>
                     <embed src="http://www.youtube.com/v/_etwz7NkemE&hl=fr" type="application/x-shockwave-flash" wmode="transparent" width="425" height="355"></embed>
-                 </object>
+                </object>
          </div>
     <!-- ##### Main Content Wrapper End ##### -->
 
