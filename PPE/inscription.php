@@ -124,7 +124,7 @@ if(isset($_POST['forminscription']))
 
 					<div class="wrap-input100 validate-input" data-validate = "Confirmation requise">
 						<input class="input100" type="text" name="mail2" value = "<?php if(isset($mail2)) { echo $mail2; } ?>">
-						<span class="focus-input100" data-placeholder="Email"></span>
+						<span class="focus-input100" data-placeholder="Confirmation Email"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate = "Nom requis">
@@ -137,7 +137,7 @@ if(isset($_POST['forminscription']))
 							<i class="zmdi zmdi-eye"></i>
 						</span>
 						<input class="input100" type="password" name="mdpc">
-						<span class="focus-input100" data-placeholder="Password"></span>
+						<span class="focus-input100" data-placeholder="Mot de Passe"></span>
 					</div>
 
 					<div class="wrap-input100 validate-input" data-validate="Confirmation requise">
@@ -145,13 +145,13 @@ if(isset($_POST['forminscription']))
 							<i class="zmdi zmdi-eye"></i>
 						</span>
 						<input class="input100" type="password" name="mdp2">
-						<span class="focus-input100" data-placeholder="Password"></span>
+						<span class="focus-input100" data-placeholder="Confirmation Mot de Passe"></span>
 					</div>
 
 					<div class="container-login100-form-btn">
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
-							<input class="login100-form-btn" type="submit" name="forminscription" value="S'inscrire">
+							<button class="login100-form-btn" type="submit" name="forminscription">S'inscrire</button>
 								
 						</div>
 					</div>
