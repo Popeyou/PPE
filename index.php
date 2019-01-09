@@ -92,14 +92,12 @@ include("controleur/controleur.php")
             </nav>
             <!-- Button Group -->
             <div class="amado-btn-group mt-30 mb-100">
-                <a href="#" class="btn amado-btn mb-15">%Discount%</a>
-                <a href="#" class="btn amado-btn active">New this week</a>
+                <a href="#" class="btn amado-btn mb-15"></a>
+                <a href="#" class="btn amado-btn active"></a>
             </div>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-                <a href="panier.php" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
-               <!-- <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
-                <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>-->
+                <a href="panier.php" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Panier <span>(0)</span></a>
             </div>
             <!-- Social Button -->
             <div class="social-info d-flex justify-content-between">
@@ -110,81 +108,15 @@ include("controleur/controleur.php")
             </div>
         </header>
         <!-- Header Area End -->
-
-        <!-- Product Catagories Area Start -->
-        <div class="products-catagories-area clearfix">
-            <div class="amado-pro-catagory clearfix">
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="shop.html">
-                        <img src="image/motobineuse.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>180€</p>
-                            <h4>Motobineuse</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="shop.html">
-                        <img src="image/marteau_piqueur.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>96€</p>
-                            <h4>Marteau-Piqueur</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="shop.html">
-                        <img src="image/beton.png" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>360€</p>
-                            <h4>Betonnière Caterpillar</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="shop.html">
-                        <img src="image/pelleteuse.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>3500€</p>
-                            <h4>Pelleteuse</h4>
-                        </div>
-                    </a>
-                </div>
-
-                <!-- Single Catagory -->
-                <div class="single-products-catagory clearfix">
-                    <a href="shop.html">
-                        <img src="image/betonniere_thermique.jpg" alt="">
-                        <!-- Hover Content -->
-                        <div class="hover-content">
-                            <div class="line"></div>
-                            <p>600€</p>
-                            <h4>Betonnière Thermique</h4>
-                        </div>
-                    </a>
-                </div>
-
-
-            </div>
-        </div>
-        <!-- Product Catagories Area End -->
-    </div>
+        
+        <div>          
+            <h1> Test Video </h1>
+                <object width="425" height="355">
+                    <param name="movie" value="http://www.youtube.com/v/_etwz7NkemE&hl=fr"></param>
+                    <param name="wmode" value="transparent"></param>
+                    <embed src="http://www.youtube.com/v/_etwz7NkemE&hl=fr" type="application/x-shockwave-flash" wmode="transparent" width="425" height="355"></embed>
+                 </object>
+         </div>
     <!-- ##### Main Content Wrapper End ##### -->
 
     <!-- ##### Newsletter Area Start ##### -->

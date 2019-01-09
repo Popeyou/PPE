@@ -77,13 +77,12 @@
             </nav>
             <!-- Button Group -->
             <div class="amado-btn-group mt-30 mb-100">
-                <a href="#" class="btn amado-btn mb-15">%Discount%</a>
-                <a href="#" class="btn amado-btn active">New this week</a>
+                <a href="#" class="btn amado-btn mb-15"></a>
+                <a href="#" class="btn amado-btn active"></a>
             </div>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-                <a href="panier.php" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
-                <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
+                <a href="panier.php" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Panier <span>(0)</span></a>
             </div>
             <!-- Social Button -->
             <div class="social-info d-flex justify-content-between">
