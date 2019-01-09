@@ -104,11 +104,7 @@ include("controleur/controleur.php")
         <!-- Header Area End -->
 
             <h1> Test Video </h1>
-                <object width="425" height="355">
-                    <param name="movie" value="http://www.youtube.com/v/_etwz7NkemE&hl=fr"></param>
-                    <param name="wmode" value="transparent"></param>
-                    <embed src="http://www.youtube.com/v/_etwz7NkemE&hl=fr" type="application/x-shockwave-flash" wmode="transparent" width="425" height="355"></embed>
-                </object>
+                <object width="425" height="344" data="https://www.youtube.com/embed/F9Bo89m2f6g"></object>
                 
     <!-- ##### Main Content Wrapper End ##### -->
 
