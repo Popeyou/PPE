@@ -76,8 +76,18 @@ include("controleur/controleur.php")
                 <ul>
                     <li class="active"><a href="index.php">Home</a></li>
                     <li><a href="shopCons.php">Magasin</a></li>
-                    <li><a href="connexion.php">Se connecter</a></li>
-                    <li><a href="inscription.php">S'inscrire</a></li>
+                    <?php
+                    if(!isset($_SESSION['mail'])){
+                      echo "<li><a href='inscription.php'>S'inscrire</a></li>"; 
+                      echo "<li><a href='connexion.php'>Se connecter</a></li>";
+                    } 
+                    else
+                    {
+                        echo "<li><a href='profil.php'>Mon profil</a></li>";
+                        echo "<li><a href='deconnexion.php'>Déconnexion</a></li>";
+                    }
+                    ?>
+                    
                 </ul>
             </nav>
             <!-- Button Group -->
@@ -229,19 +239,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                 <div class="collapse navbar-collapse" id="footerNavContent">
                                     <ul class="navbar-nav ml-auto">
                                         <li class="nav-item active">
-                                            <a class="nav-link" href="index.html">Home</a>
+                                            <a class="nav-link" href="index.php">Accueil</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="shop.html">Shop</a>
+                                            <a class="nav-link" href="shopcons.php">Magasin</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="product-details.html">Product</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="panier.php">Cart</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="checkout.html">Checkout</a>
+                                            <a class="nav-link" href="panier.php">Panier</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -264,6 +268,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     <script src="js/plugins.js"></script>
     <!-- Active js -->
     <script src="js/active.js"></script>
+
 
 </body>
 
