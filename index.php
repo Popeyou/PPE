@@ -53,7 +53,7 @@ include("controleur/controleur.php")
         <div class="mobile-nav">
             <!-- Navbar Brand -->
             <div class="amado-navbar-brand">
-                <a href="index.php"><img src="image/core-img/logo.png" alt=""></a>
+                <a href="index.php"><img src="image/roilles.jpg" alt=""></a>
             </div>
             <!-- Navbar Toggler -->
             <div class="amado-navbar-toggler">
@@ -78,8 +78,8 @@ include("controleur/controleur.php")
                     <li><a href="shopCons.php">Magasin</a></li>
                     <?php
                     if(!isset($_SESSION['mail'])){
-                      echo "<li><a href='inscription.php'>S'inscrire</a></li>"; 
-                      echo "<li><a href='connexion.php'>Se connecter</a></li>";
+                        echo "<li><a href='inscription.php'>S'inscrire</a></li>"; 
+                        echo "<li><a href='connexion.php'>Se connecter</a></li>";
                     } 
                     else
                     {
@@ -102,15 +102,14 @@ include("controleur/controleur.php")
 
         </header>
         <!-- Header Area End -->
-        
-        <div>          
+
             <h1> Test Video </h1>
                 <object width="425" height="355">
                     <param name="movie" value="http://www.youtube.com/v/_etwz7NkemE&hl=fr"></param>
                     <param name="wmode" value="transparent"></param>
                     <embed src="http://www.youtube.com/v/_etwz7NkemE&hl=fr" type="application/x-shockwave-flash" wmode="transparent" width="425" height="355"></embed>
                 </object>
-        </div>
+                
     <!-- ##### Main Content Wrapper End ##### -->
 
     <!-- ##### Newsletter Area Start ##### -->
