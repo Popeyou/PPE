@@ -53,7 +53,7 @@ include("controleur/controleur.php")
         <div class="mobile-nav">
             <!-- Navbar Brand -->
             <div class="amado-navbar-brand">
-                <a href="index.php"><img src="image/roilles.jpg" alt=""></a>
+                <a href="index.php"><img src="image/core-img/logo.png" alt=""></a>
             </div>
             <!-- Navbar Toggler -->
             <div class="amado-navbar-toggler">
@@ -78,8 +78,8 @@ include("controleur/controleur.php")
                     <li><a href="shopCons.php">Magasin</a></li>
                     <?php
                     if(!isset($_SESSION['mail'])){
-                        echo "<li><a href='inscription.php'>S'inscrire</a></li>"; 
-                        echo "<li><a href='connexion.php'>Se connecter</a></li>";
+                      echo "<li><a href='inscription.php'>S'inscrire</a></li>"; 
+                      echo "<li><a href='connexion.php'>Se connecter</a></li>";
                     } 
                     else
                     {
@@ -92,20 +92,21 @@ include("controleur/controleur.php")
             </nav>
             <!-- Button Group -->
             <div class="amado-btn-group mt-30 mb-100">
-                <a href="#" class="btn amado-btn mb-15"></a>
-                <a href="#" class="btn amado-btn active"></a>
+                <a href="#" class="btn amado-btn mb-15">%Discount%</a>
+                <a href="#" class="btn amado-btn active">New this week</a>
             </div>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-                <a href="panier.php" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Panier <span>(0)</span></a>
+                <a href="panier.php" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
+               <!-- <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
+                <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>-->
             </div>
-
         </header>
         <!-- Header Area End -->
 
-            <h1> Test Video </h1>
+        <h1> Test Video </h1>
                 <object width="425" height="344" data="https://www.youtube.com/embed/F9Bo89m2f6g"></object>
-                
+    </div>
     <!-- ##### Main Content Wrapper End ##### -->
 
     <!-- ##### Newsletter Area Start ##### -->
