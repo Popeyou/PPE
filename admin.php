@@ -127,6 +127,10 @@ include("controleur/controleur.php")
             case 1:
             ?>
             <form method="post">
+                <table border = 1>
+                <tr><td> Nom</td> <td> Code Client </td>
+                    <td> Nombre Commande </td>
+                    </tr>
                 </br></br></br></br></br></br></br></br></br></br></br>
                 <input type="submit" name="clic" value="Commande par clients">
                 <input type="submit" name="suivant" value="requete suivante">
@@ -137,12 +141,14 @@ include("controleur/controleur.php")
                 $req = $bdd->query("select nom, client.codeC, count(distinct codeR) as nb_commande from client, reservation where client.codeC=reservation.codeC group by codeC");
                           while ($donnee = $req->fetch())
                           {
-                            ?>nom :<?php echo $donnee['nom'];?>&nbsp;&nbsp;<?php
-                            ?>codeClient :<?php echo $donnee['codeC'];?>&nbsp;&nbsp;<?php
-                            ?>nbCommande :<?php echo $donnee['nb_commande'];?>&nbsp;&nbsp;<?php
+                            echo"<tr>
+                            <td>".$donnee['nom']."</td>
+                            <td>".$donnee['codeC']."</td>
+                            <td>".$donnee['nb_commande']."</td>  
+                                </tr>";
                           }
                       }
-
+                      ?></table><?php
                 if(isset($_POST['suivant']))
                 {
                  echo "<script type='text/javascript'>document.location.replace('admin.php?page=2');</script>";     
@@ -155,6 +161,9 @@ include("controleur/controleur.php")
             case 2:
             ?>
             <form method="post">
+                <table border = 1>
+                <tr><td> Nb Commande</td> <td> Mois </td>
+                    </tr>
                 </br></br></br></br></br></br></br></br></br></br></br>
                 <input type="submit" name="retour" value="précedente requete">
                 <input type="submit" name="clic" value="Commande par mois">
@@ -166,10 +175,14 @@ include("controleur/controleur.php")
                 $req = $bdd->query("select count(distinct codeR) as nb_commande, month(dateD) as mois from reservation group by month(dateD)");
                           while ($donnee = $req->fetch())
                           {
-                            ?>nbCommande :<?php echo $donnee['nb_commande'];?>&nbsp;&nbsp;<?php
-                            ?>Mois :<?php echo $donnee['mois'];?>&nbsp;&nbsp;<?php
+                                echo"<tr>
+                                <td>".$donnee['nb_commande']."</td>
+                                <td>".$donnee['mois']."</td>
+                                </tr>";
+                    
                           }
                       }
+                      ?></table><?php
                 if(isset($_POST['suivant']))
                 {
                  echo "<script type='text/javascript'>document.location.replace('admin.php?page=3');</script>";     
@@ -187,6 +200,9 @@ include("controleur/controleur.php")
             case  3:
             ?>
             <form method="post">
+                <table border = 1>
+                <tr><td> Nb Commande </td> <td> Années </td>
+                    </tr>
                 </br></br></br></br></br></br></br></br></br></br></br>
                 <input type="submit" name="retour" value="précédente requete">
                 <input type="submit" name="clic" value="Commande par années">
@@ -197,11 +213,13 @@ include("controleur/controleur.php")
                 $req = $bdd->query("select count(distinct codeR) as nb_commande, year(dateD) as annees from reservation group by year(dateD)");
                           while ($donnee = $req->fetch())
                           {
-                            ?>nbCommande :<?php echo  $donnee['nb_commande'];?>&nbsp;&nbsp;<?php
-                            ?>Années :<?php echo $donnee['annees'];?>&nbsp;&nbsp;<?php
+                            echo"<tr>
+                                <td>".$donnee['nb_commande']."</td>
+                                <td>".$donnee['annees']."</td>
+                                </tr>";
                           }
                       }
-
+                      ?></table><?php
                 if(isset($_POST['retour']))
                 {
                  echo "<script type='text/javascript'>document.location.replace('admin.php?page=2');</script>";     
