@@ -138,13 +138,13 @@ include("controleur/controleur.php")
              <?php
              if(isset($_POST['clic']))
              {
-                $req = $bdd->query("select nom, client.codeC, count(distinct codeR) as nb_commande from client, reservation where client.codeC=reservation.codeC group by codeC");
+                $req = $bdd->query("select * from comCli");
                           while ($donnee = $req->fetch())
                           {
                             echo"<tr>
-                            <td>".$donnee['nom']."</td>
-                            <td>".$donnee['codeC']."</td>
-                            <td>".$donnee['nb_commande']."</td>  
+                            <td>".$donnee['Nom']."</td>
+                            <td>".$donnee['CodeClient']."</td>
+                            <td>".$donnee['nbCommande']."</td>  
                                 </tr>";
                           }
                       }
@@ -172,12 +172,12 @@ include("controleur/controleur.php")
              <?php
              if(isset($_POST['clic']))
              {
-                $req = $bdd->query("select count(distinct codeR) as nb_commande, month(dateD) as mois from reservation group by month(dateD)");
+                $req = $bdd->query("select * from comMois");
                           while ($donnee = $req->fetch())
                           {
                                 echo"<tr>
-                                <td>".$donnee['nb_commande']."</td>
-                                <td>".$donnee['mois']."</td>
+                                <td>".$donnee['nbCommande']."</td>
+                                <td>".$donnee['Mois']."</td>
                                 </tr>";
                     
                           }
@@ -210,12 +210,12 @@ include("controleur/controleur.php")
              <?php
              if(isset($_POST['clic']))
              {
-                $req = $bdd->query("select count(distinct codeR) as nb_commande, year(dateD) as annees from reservation group by year(dateD)");
+                $req = $bdd->query("select * from comAn");
                           while ($donnee = $req->fetch())
                           {
                             echo"<tr>
-                                <td>".$donnee['nb_commande']."</td>
-                                <td>".$donnee['annees']."</td>
+                                <td>".$donnee['nbCommande']."</td>
+                                <td>".$donnee['Annees']."</td>
                                 </tr>";
                           }
                       }

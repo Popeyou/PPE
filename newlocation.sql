@@ -1,4 +1,3 @@
-
 drop database location;
 create database location;
 
@@ -282,9 +281,9 @@ before insert on client
 for each row
 Begin
 if year(curdate())-year(new.datenaiss)<18
-	then
-	signal sqlstate '45000'
-	set message_text = 'La personne n est pas majeur';
+  then
+  signal sqlstate '45000'
+  set message_text = 'La personne n est pas majeur';
 end if;
 END //
 Delimiter ;
@@ -299,7 +298,6 @@ Begin
 insert into archivmateriel values (old.codeM,old.codeT_M,old.nom,old.notice,old.prix,old.poids,sysdate(),user(),"update");
 End //
 Delimiter ;
-
 drop trigger if exists verifDelete;
 delimiter //
 create trigger verifDelete
@@ -366,3 +364,12 @@ set codeReduc = "oui";
 end if;
 END //
 Delimiter ;
+
+
+
+
+create view comCli(Nom,CodeClient,nbCommande) as select nom, client.codeC, count(distinct codeR) from client, reservation where client.codeC=reservation.codeC group by codeC;
+
+create view comMois(nbCommande,Mois) as select count(distinct codeR), month(dateD) from reservation group by month(dateD);
+
+create view comAn(nbCommande,Annees) as select count(distinct codeR), year(dateD) from reservation group by year(dateD);
