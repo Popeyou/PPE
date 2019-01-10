@@ -64,7 +64,7 @@ include("controleur/controleur.php")
         <div class="mobile-nav">
             <!-- Navbar Brand -->
             <div class="amado-navbar-brand">
-                <a href="index.php"><img src="image/core-img/logo.png" alt=""></a>
+                <a href="index.php"><img src="img/image/core-img/logo.png" alt=""></a>
             </div>
             <!-- Navbar Toggler -->
             <div class="amado-navbar-toggler">
@@ -80,7 +80,7 @@ include("controleur/controleur.php")
             </div>
             <!-- Logo -->
             <div class="logo">
-                <a href="index.php"><img src="image/roilles.png" alt=""></a>
+                <a href="index.php"><img src="img/image/roilles.png" alt=""></a>
             </div>
             <!-- Amado Nav -->
             <nav class="amado-nav">
@@ -264,7 +264,7 @@ include("controleur/controleur.php")
                     <div class="single_widget_area">
                         <!-- Logo -->
                         <div class="footer-logo mr-50">
-                            <a href="index.html"><img src="image/roilles.PNG" alt=""></a>
+                            <a href="index.html"><img src="img/image/roilles.PNG" alt=""></a>
                         </div>
                         <!-- Copywrite Text -->
                         <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->

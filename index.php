@@ -53,7 +53,7 @@ include("controleur/controleur.php")
         <div class="mobile-nav">
             <!-- Navbar Brand -->
             <div class="amado-navbar-brand">
-                <a href="index.php"><img src="image/core-img/logo.png" alt=""></a>
+                <a href="index.php"><img src="img/image/core-img/logo.png" alt=""></a>
             </div>
             <!-- Navbar Toggler -->
             <div class="amado-navbar-toggler">
@@ -69,7 +69,7 @@ include("controleur/controleur.php")
             </div>
             <!-- Logo -->
             <div class="logo">
-                <a href="index.php"><img src="image/roilles.png" alt=""></a>
+                <a href="index.php"><img src="img/image/roilles.png" alt=""></a>
             </div>
             <!-- Amado Nav -->
             <nav class="amado-nav">
@@ -78,8 +78,8 @@ include("controleur/controleur.php")
                     <li><a href="shopCons.php">Magasin</a></li>
                     <?php
                     if(!isset($_SESSION['mail'])){
-                      echo "<li><a href='inscription.php'>S'inscrire</a></li>"; 
-                      echo "<li><a href='connexion.php'>Se connecter</a></li>";
+                        echo "<li><a href='inscription.php'>S'inscrire</a></li>"; 
+                        echo "<li><a href='connexion.php'>Se connecter</a></li>";
                     } 
                     else
                     {
@@ -97,7 +97,7 @@ include("controleur/controleur.php")
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
                 <a href="panier.php" class="cart-nav"><img src="img/core-img/cart.png" alt=""> panier <span>(0)</span></a>
-               <!-- <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
+                <!-- <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
                 <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>-->
             </div>
         </header>
@@ -142,7 +142,7 @@ include("controleur/controleur.php")
                     <div class="single_widget_area">
                         <!-- Logo -->
                         <div class="footer-logo mr-50">
-                            <a href="index.html"><img src="image/roilles.PNG" alt=""></a>
+                            <a href="index.html"><img src="img/image/roilles.PNG" alt=""></a>
                         </div>
                         <!-- Copywrite Text -->
                         <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->

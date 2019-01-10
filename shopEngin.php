@@ -64,7 +64,7 @@
             </div>
             <!-- Logo -->
             <div class="logo">
-                <a href="index.php"><img src="image/roilles.png" alt=""></a>
+                <a href="index.php"><img src="img/image/roilles.png" alt=""></a>
             </div>
             <!-- Amado Nav -->
             <nav class="amado-nav">
@@ -136,7 +136,7 @@
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
-                                <img src="image/pelleteuse2.jpg" alt="">
+                                <img src="img/image/pelleteuse2.jpg" alt="">
                                 <!-- Hover Thumb -->
                             </div>
 
@@ -172,7 +172,7 @@
                         <div class="single-product-wrapper">
                             <!-- Product Image -->
                             <div class="product-img">
-                                <img src="image/pelleteuse.jpg" alt="">
+                                <img src="img/image/pelleteuse.jpg" alt="">
                                 <!-- Hover Thumb -->
                             </div>
 
@@ -247,7 +247,7 @@
                     <div class="single_widget_area">
                         <!-- Logo -->
                         <div class="footer-logo mr-50">
-                            <a href="index.html"><img src="image/roilles.PNG" alt=""></a>
+                            <a href="index.html"><img src="img/image/roilles.PNG" alt=""></a>
                         </div>
                         <!-- Copywrite Text -->
                         <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
