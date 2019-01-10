@@ -14,7 +14,7 @@ create table type_technicien
  (
    codeT_T int(5) not null auto_increment,
    libelle enum("Mainteneur","Installateur","Réparateur","Engin de chantier"),
-   primary key(codeT_T) 
+   primary key(codeT_T)
  )default charset='utf8';
 
 # -----------------------------------------------------------------------------
@@ -68,7 +68,7 @@ create table type_client
     (
      codeT_C int(5) not null auto_increment,
      libelle enum("Professionnelle","Particulier","Entreprise"),
-     primary key(codeT_C) 
+     primary key(codeT_C)
     )default charset='utf8';
 
 # -----------------------------------------------------------------------------
@@ -84,7 +84,7 @@ create table  client
    nom varchar(50),
    adresse varchar(100),
    tel int(10),
-   datenaiss date,  
+   datenaiss date,
    nbCom int(5),
    codeReduc varchar(10),
    primary key(codeC),
@@ -99,7 +99,7 @@ create table type_materiel
  (
    codeT_M int(5) not null auto_increment,
    designation enum("Bricolage","Construction","Jardinage","Engin de chantier"),
-   primary key(codeT_M) 
+   primary key(codeT_M)
  )default charset='utf8';
 
 # -----------------------------------------------------------------------------
@@ -278,9 +278,9 @@ insert into concerner VALUES
 Drop trigger if exists verifAge ;
 Delimiter //
 Create trigger verifAge
-before insert on client 
+before insert on client
 for each row
-Begin 
+Begin
 if year(curdate())-year(new.datenaiss)<18
 	then
 	signal sqlstate '45000'
@@ -323,7 +323,7 @@ begin
 
 declare verif varchar(3);
 
-select materiel.stock - concerner.qte into verif from materiel, concerner, reservation where concerner.codeM = materiel.codeM and concerner.codeR = reservation.codeR and reservation.codeR = new.codeR 
+select materiel.stock - concerner.qte into verif from materiel, concerner, reservation where concerner.codeM = materiel.codeM and concerner.codeR = reservation.codeR and reservation.codeR = new.codeR
 ;
 
 if ( verif ) < 0
@@ -331,8 +331,8 @@ then
         signal sqlstate '45000'
         set message_text = 'quantite_indisponible';
 else
-        update materiel
-      set  stock =  verif
+      update materiel
+      set  stock = verif
       where codeM in ( select codeM from concerner );
 end if;
 end //
@@ -343,25 +343,26 @@ delimiter ;
 Drop trigger if exists fidCli ;
 Delimiter //
 Create trigger fidCli
-after insert on reservation 
+after insert on reservation
 for each row
-Begin 
+Begin
 update client
 set nbcom = nbCom+1
 where codeC in(select codeC from reservation where codeR=new.codeR);
 END //
 Delimiter ;
 
-/*Trigger code reduc
+/*Trigger code reduc*/
 Drop trigger if exists Reduction ;
 Delimiter //
 Create trigger Reduction
-after update on client 
+after update on client
 for each row
-Begin 
-if nbCom = 3
+Begin
+if (nbCom = 3)
 then
+update client
 set codeReduc = "oui";
+end if;
 END //
-Delimiter ;*/
-
+Delimiter ;
