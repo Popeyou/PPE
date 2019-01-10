@@ -90,21 +90,17 @@ include("controleur/controleur.php")
                     
                 </ul>
             </nav>
-            <!-- Button Group -->
-            <div class="amado-btn-group mt-30 mb-100">
-                <a href="admin.php" class="btn amado-btn mb-15">Stat</a>
-            </div>
+
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-                <a href="panier.php" class="cart-nav"><img src="img/core-img/cart.png" alt=""> panier <span>(0)</span></a>
+                <a href="panier.php" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Panier <span>(0)</span></a>
                <!-- <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
                 <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>-->
             </div>
         </header>
         <!-- Header Area End -->
 
-        <h1> Test Video </h1>
-                <object width="425" height="344" data="https://www.youtube.com/embed/F9Bo89m2f6g"></object>
+
     </div>
     <!-- ##### Main Content Wrapper End ##### -->
 
