@@ -85,6 +85,8 @@ create table  client
    adresse varchar(100),
    tel int(10),
    datenaiss date,  
+   nbCom int(5),
+   codeReduc varchar(10),
    primary key(codeC),
    foreign key(codeT_C) references type_client(codeT_C)
  )default charset='utf8';
@@ -176,8 +178,19 @@ create table intervenir
    foreign key(codeM) references materiel(codeM)
  )default charset='utf8';
 
+# -----------------------------------------------------------------------------
+#       TABLE : (concerner) Reservation <=> Materiel
+# -----------------------------------------------------------------------------
 
-
+create table concerner
+  (
+    codeR int(5) not null,
+    codeM int(5) not null,
+    qte int(5),
+    primary key(codeR,codeM),
+    foreign key(codeR) references reservation(codeR),
+    foreign key(codeM) references materiel(codeM)
+)default charset='utf8';
 /*  INSERT */
 
 
@@ -233,10 +246,10 @@ insert into intervention values
 /* CLIENT */
 
 insert into client values
-(null,1,"mdp123","a@gmail.com","JEAN","157 Rue de la Chouette","0652216408","1995-09-08"),
-(null,2,"mdp132","b@gmail.com","SKOIZER","158 Rue de la Chouette","0621640865","1991-01-03"),
-(null,3,"mdp321","c@gmail.com","HULOT","159 Rue de la Chouette","0652216408","1982-09-08"),
-(null,2,"mdp231","d@gmail.com", "MORETI","34 Rue de la Marche","0654287689","1975-03-12");
+(null,1,"mdp123","a@gmail.com","JEAN","157 Rue de la Chouette","0652216408","1995-09-08",3,"eooivhe"),
+(null,2,"mdp132","b@gmail.com","SKOIZER","158 Rue de la Chouette","0621640865","1991-01-03",3,""),
+(null,3,"mdp321","c@gmail.com","HULOT","159 Rue de la Chouette","0652216408","1982-09-08",2,""),
+(null,2,"mdp231","d@gmail.com", "MORETI","34 Rue de la Marche","0654287689","1975-03-12",1,"icjros");
 
 /* MATERIEL */
 
@@ -257,6 +270,9 @@ insert into reservation values
 insert into contrat values
 (null, 1,"SOPRANO", "Contrat fini");
 
+insert into concerner VALUES
+(1,3,2),
+(2,2,1);
 /*    Triggers    */
 
 Drop trigger if exists verifAge ;
@@ -273,6 +289,7 @@ end if;
 END //
 Delimiter ;
 
+/*
 drop trigger if exists verifUpdate;
 Delimiter //
 create trigger verifUpdate
@@ -292,13 +309,59 @@ begin
 insert into archiv values (old.codeM,old.codeT_M,old.nom,old.notice,old.prix,old.poids,sysdate(),user(),"delete");
 end //
 delimiter ;
+*/
 
-/*Trigger qui rend la commande impossible si la quantité est égale à 0
 
-Drop trigger if exists verifQTE
+/*Trigger qui rend la commande impossible si la quantité est égale à 0*/
+
+drop trigger if exists verifStock;
 delimiter //
-create trigger verifQTE
+create trigger verifStock
 before insert on reservation
 for each row
-Begin
-if */
+begin
+
+declare verif varchar(3);
+
+select materiel.stock - concerner.qte into verif from materiel, concerner, reservation where concerner.codeM = materiel.codeM and concerner.codeR = reservation.codeR and reservation.codeR = new.codeR 
+;
+
+if ( verif ) < 0
+then
+        signal sqlstate '45000'
+        set message_text = 'quantite_indisponible';
+else
+        update materiel
+      set  stock =  verif
+      where codeM in ( select codeM from concerner );
+end if;
+end //
+
+delimiter ;
+
+/*Trigger qui ajoute un au num de commande client*/
+Drop trigger if exists fidCli ;
+Delimiter //
+Create trigger fidCli
+after insert on reservation 
+for each row
+Begin 
+update client
+set nbcom = nbCom+1
+where codeC in(select codeC from reservation where codeR=new.codeR);
+END //
+Delimiter ;
+
+/*Trigger code reduc
+Drop trigger if exists Reduction ;
+Delimiter //
+Create trigger Reduction
+after update on client 
+for each row
+Begin 
+if nbCom = 3
+then
+set codeReduc = "oui";
+END //
+Delimiter ;*/
+

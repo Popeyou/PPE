@@ -25,6 +25,17 @@ include("controleur/controleur.php")
 
 </head>
 
+<?php
+        try
+        {
+           $bdd = new PDO('mysql:host=localhost;dbname=location;charset=utf8', 'root', '');
+        }
+        catch (Exception $e)
+        {
+                die('Erreur : ' . $e->getMessage());
+        }
+?>
+
 <body>
     <!-- Search Wrapper Area Start -->
     <div class="search-wrapper section-padding-100">
@@ -74,7 +85,7 @@ include("controleur/controleur.php")
             <!-- Amado Nav -->
             <nav class="amado-nav">
                 <ul>
-                    <li class="active"><a href="index.php">Home</a></li>
+                    <li><a href="index.php">Home</a></li>
                     <li><a href="shopCons.php">Magasin</a></li>
                     <?php
                     if(!isset($_SESSION['mail'])){
@@ -90,19 +101,116 @@ include("controleur/controleur.php")
                     
                 </ul>
             </nav>
-
+            <!-- Button Group -->
+            <div class="amado-btn-group mt-30 mb-100">
+                <a href="admin.php?page=1" class="btn amado-btn mb-15">Stat</a>
+            </div>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-                <a href="panier.php" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Panier <span>(0)</span></a>
+                <a href="panier.php" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
                <!-- <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
                 <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>-->
             </div>
         </header>
         <!-- Header Area End -->
 
+        <h1> ADMIN </h1>
+        <?php
+        
+       if (isset($_GET['page'])) $page=$_GET['page'];
+        else $page=0;
 
+
+        switch ($page) 
+        {
+
+            case 1:
+            ?>
+            <form method="post">
+                </br></br></br></br></br></br></br></br></br></br></br>
+                <input type="submit" name="clic" value="Commande par clients">
+                <input type="submit" name="suivant" value="requete suivante">
+            </form>
+             <?php
+             if(isset($_POST['clic']))
+             {
+                $req = $bdd->query("select nom, client.codeC, count(distinct codeR) as nb_commande from client, reservation where client.codeC=reservation.codeC group by codeC");
+                          while ($donnee = $req->fetch())
+                          {
+                            ?>nom :<?php echo $donnee['nom'];?>&nbsp;&nbsp;<?php
+                            ?>codeClient :<?php echo $donnee['codeC'];?>&nbsp;&nbsp;<?php
+                            ?>nbCommande :<?php echo $donnee['nb_commande'];?>&nbsp;&nbsp;<?php
+                          }
+                      }
+
+                if(isset($_POST['suivant']))
+                {
+                 echo "<script type='text/javascript'>document.location.replace('admin.php?page=2');</script>";     
+                }
+                break;
+             ?>   
+            </br>
+            </br>
+            <?php
+            case 2:
+            ?>
+            <form method="post">
+                </br></br></br></br></br></br></br></br></br></br></br>
+                <input type="submit" name="retour" value="précedente requete">
+                <input type="submit" name="clic" value="Commande par mois">
+                <input type="submit" name="suivant" value="requete suivante">
+            </form>
+             <?php
+             if(isset($_POST['clic']))
+             {
+                $req = $bdd->query("select count(distinct codeR) as nb_commande, month(dateD) as mois from reservation group by month(dateD)");
+                          while ($donnee = $req->fetch())
+                          {
+                            ?>nbCommande :<?php echo $donnee['nb_commande'];?>&nbsp;&nbsp;<?php
+                            ?>Mois :<?php echo $donnee['mois'];?>&nbsp;&nbsp;<?php
+                          }
+                      }
+                if(isset($_POST['suivant']))
+                {
+                 echo "<script type='text/javascript'>document.location.replace('admin.php?page=3');</script>";     
+                }
+
+                if(isset($_POST['retour']))
+                {
+                 echo "<script type='text/javascript'>document.location.replace('admin.php?page=1');</script>";     
+                }
+                      break;
+             ?>   
+            </br>
+            </br>
+            <?php
+            case  3:
+            ?>
+            <form method="post">
+                </br></br></br></br></br></br></br></br></br></br></br>
+                <input type="submit" name="retour" value="précédente requete">
+                <input type="submit" name="clic" value="Commande par années">
+            </form>
+             <?php
+             if(isset($_POST['clic']))
+             {
+                $req = $bdd->query("select count(distinct codeR) as nb_commande, year(dateD) as annees from reservation group by year(dateD)");
+                          while ($donnee = $req->fetch())
+                          {
+                            ?>nbCommande :<?php echo  $donnee['nb_commande'];?>&nbsp;&nbsp;<?php
+                            ?>Années :<?php echo $donnee['annees'];?>&nbsp;&nbsp;<?php
+                          }
+                      }
+
+                if(isset($_POST['retour']))
+                {
+                 echo "<script type='text/javascript'>document.location.replace('admin.php?page=2');</script>";     
+                }
+                      break;
+                  }
+             ?>   
     </div>
-    <!-- ##### Main Content Wrapper End ##### -->
+    <!-- ##### Main Content Wrapper End ##### --> 
 
     <!-- ##### Newsletter Area Start ##### -->
     <section class="newsletter-area section-padding-100-0">
@@ -188,5 +296,4 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
 </body>
-
 </html>

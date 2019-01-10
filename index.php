@@ -92,7 +92,7 @@ include("controleur/controleur.php")
             </nav>
             <!-- Button Group -->
             <div class="amado-btn-group mt-30 mb-100">
-                <a href="admin.php" class="btn amado-btn mb-15">Stat</a>
+                <a href="admin.php?page=1" class="btn amado-btn mb-15">Stat</a>
             </div>
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
