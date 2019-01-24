@@ -86,6 +86,8 @@ create table  client
    datenaiss date,
    nbCom int(5),
    codeReduc varchar(10),
+   numSiret int(14),
+   numSiren int(9),
    primary key(codeC),
    foreign key(codeT_C) references type_client(codeT_C)
  )default charset='utf8';
@@ -364,6 +366,15 @@ set codeReduc = "oui";
 end if;
 END //
 Delimiter ;
+
+/*Trigger numero Siret
+Drop trigger if exists verifSiret
+Delimiter //
+create trigger verifSiret
+after update on client
+for each row 
+BEGIN*/
+
 
 
 
