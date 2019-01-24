@@ -370,13 +370,14 @@ Delimiter ;
 
 /*Trigger numero Siret_Siren (expression regulière )*/
 
-/*Drop trigger if exists verifSir
+Drop trigger if exists verifSir
 Delimiter //
 create trigger verifSiret
 after update on client
 for each row 
 BEGIN
-if new.numSiret REGEXP_LIKE (numSiret {14}-[1-9])*/
+if new.numSiret REGEXP_LIKE (numSiret {14}-[0-9])
+
 
 
 
