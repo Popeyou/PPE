@@ -81,6 +81,7 @@ create table  client
    mdpc varchar(100),
    mail varchar(50),
    nom varchar(50),
+   prenom VARCHAR(50),
    adresse varchar(100),
    tel int(10),
    datenaiss date,
@@ -374,8 +375,8 @@ Delimiter //
 create trigger verifSiret
 after update on client
 for each row 
-BEGIN*/
-
+BEGIN
+if new.numSiret REGEXP_LIKE (numSiret {14}-[1-9])*/
 
 
 
