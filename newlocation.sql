@@ -247,10 +247,10 @@ insert into intervention values
 /* CLIENT */
 
 insert into client values
-(null,1,"mdp123","a@gmail.com","JEAN","157 Rue de la Chouette","0652216408","1995-09-08",3,"eooivhe"),
-(null,2,"mdp132","b@gmail.com","SKOIZER","158 Rue de la Chouette","0621640865","1991-01-03",3,""),
-(null,3,"mdp321","c@gmail.com","HULOT","159 Rue de la Chouette","0652216408","1982-09-08",2,""),
-(null,2,"mdp231","d@gmail.com", "MORETI","34 Rue de la Marche","0654287689","1975-03-12",1,"icjros");
+(null,1,"mdp123","a@gmail.com","JEAN","157 Rue de la Chouette","0652216408","1995-09-08",3,null, null, null),
+(null,2,"mdp132","b@gmail.com","SKOIZER","158 Rue de la Chouette","0621640865","1991-01-03",3,"uhcoe", null, null),
+(null,3,"mdp321","c@gmail.com","HULOT","159 Rue de la Chouette","0652216408","1982-09-08",2,null, null, null),
+(null,2,"mdp231","d@gmail.com", "MORETI","34 Rue de la Marche","0654287689","1975-03-12",1,"icjros", null, null);
 
 /* MATERIEL */
 
@@ -367,8 +367,9 @@ end if;
 END //
 Delimiter ;
 
-/*Trigger numero Siret
-Drop trigger if exists verifSiret
+/*Trigger numero Siret_Siren (expression regulière )*/
+
+/*Drop trigger if exists verifSir
 Delimiter //
 create trigger verifSiret
 after update on client
