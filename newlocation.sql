@@ -16,6 +16,11 @@ create table type_technicien
    primary key(codeT_T)
  )default charset='utf8';
 
+ insert into type_technicien values
+	(null,"Mainteneur"),
+	(null,"Réparateur"),
+	(null,"Installateur");
+
 # -----------------------------------------------------------------------------
 #       TABLE : TECHNICIEN
 # -----------------------------------------------------------------------------
@@ -32,6 +37,13 @@ create table technicien
    foreign key(codeT_T) references type_technicien(codeT_T)
  )default charset='utf8';
 
+ insert into technicien values
+	(null, 1, "motdepasse4", "George", "MICHAEL", "gm@gmail.com"),
+	(null, 2, "motdepasse3", "Charles", "DUPONT", "cd@gmail.com"),
+	(null, 3, "motde passe2", "Henri", "DUROI", "hdr@gmail.com"),
+	(null, 2, "motdepasse1", "Ahmed", "BENALI", "aba@gmial.com"),
+	(null, 1, "mdp", "Jeremy", "DAUVOIS", "dawnstriked@gmail.com");
+
 # -----------------------------------------------------------------------------
 #       TABLE : TYPE INTERVENTION
 # -----------------------------------------------------------------------------
@@ -42,6 +54,11 @@ create table type_intervention
     libelle enum("Maintenance","Installation","Réparation"),
     primary key(codeT_I)
   )default charset='utf8';
+
+  insert into type_intervention values
+	(null,"Maintenance"),
+	(null,"Réparation"),
+	(null,"Installation");
 
 # -----------------------------------------------------------------------------
 #       TABLE : INTERVENTION
@@ -60,15 +77,30 @@ create table intervention
    foreign key(codeT) references technicien(codeT)
  )default charset='utf8';
 
+ insert into intervention values
+	(null, 1, 1,'10:10:00', "RAS", "Fini"),
+	(null, 2, 1,'00:30:00', "Manque outil adéquat", "Fini"),
+	(null, 3, 2,'1:00:00', "Moins de temps que prévu", "Fini"),
+	(null, 2, 3,'00:10:00', "Remplacement du matériel du client par un neuf", "Fini"),
+	(null, 1, 4,'5:15:00', "Changement de pièce sur l'engin", "Fini"),
+	(null, 3, 2,'1:00:00', "RAS", "Fini"),
+	(null, 1, 4,'00:00:00', "En Cours", "En Cours");
+
 # -----------------------------------------------------------------------------
 #       TABLE : TYPE CLIENT
 # -----------------------------------------------------------------------------
+
 create table type_client
     (
      codeT_C int(5) not null auto_increment,
      libelle enum("Professionnelle","Particulier","Entreprise"),
      primary key(codeT_C)
     )default charset='utf8';
+
+insert into type_client values
+	(null,"Professionnelle"),
+	(null,"Particulier"),
+	(null,"Entreprise");
 
 # -----------------------------------------------------------------------------
 #       TABLE : CLIENT
@@ -93,6 +125,12 @@ create table  client
    foreign key(codeT_C) references type_client(codeT_C)
  )default charset='utf8';
 
+ insert into client values
+	(null,1,"mdp123","a@gmail.com","JEAN","CHARLES","157 Rue de la Chouette","0652216408","1995-09-08",3,null, null, null),
+	(null,2,"mdp132","b@gmail.com","SKOIZER","MAX","158 Rue de la Chouette","0621640865","1991-01-03",3,"uhcoe", null, null),
+	(null,3,"mdp321","c@gmail.com","HULOT","ZOE","159 Rue de la Chouette","0652216408","1982-09-08",2,null, null, null),
+	(null,2,"mdp231","d@gmail.com", "MORETI","PAUL","34 Rue de la Marche","0654287689","1975-03-12",1,"icjros", null, null);
+
 # -----------------------------------------------------------------------------
 #       TABLE : TYPE MATERIEL
 # -----------------------------------------------------------------------------
@@ -103,6 +141,11 @@ create table type_materiel
    designation enum("Bricolage","Construction","Jardinage","Engin de chantier"),
    primary key(codeT_M)
  )default charset='utf8';
+
+ insert into type_materiel values
+	(null,"Bricolage"),
+	(null,"Engin de chantier"),
+	(null,"Jardinage");
 
 # -----------------------------------------------------------------------------
 #       TABLE : MATERIEL
@@ -121,6 +164,13 @@ create table materiel
    foreign key(codeT_M) references type_materiel(codeT_M)
  )default charset='utf8';
 
+insert into materiel values
+	(null, 1, "Marteau-piqueur", "1700W 60 joules - Livré en coffret métallique avec 2 burins - Grantie de 3 ans", 149.99, 16, 3),
+	(null, 3, "Tuyau d'arrosage nu", "Resistant aux UV - PVC - 50m - Diametre intérieur 18.5mm - Diametre extérieur 23mm",74.99,11.062, 5),
+	(null, 2, "Pelleteuse", "Profondeur d'excavation max 6.20m - Diesel - Hauteur 3.01m - Longeur 9.42m - Largeur 2.98m", 1220,22000, 1),
+	(null, 2, "Betonnière", "Energie : Electrique - Capacite : 160l Matière principale : Acier - Usage : petit chantier", 229.00, 46, 4),
+	(null, 2, "Brouette de chantier", "Acier - Diametre roue 400mm - Contenance 100l/200kg", 55, 10, 5),
+	(null, 3, "Brouette Jardinage", "Resine - Dimension 111x68 5x68 60cm", 39.95, 12, 2);
 
 # -----------------------------------------------------------------------------
 #       TABLE : RESERVATION
@@ -139,6 +189,10 @@ create table reservation
    foreign key(codeC) references client(codeC)
  )default charset='utf8';
 
+ insert into reservation values
+	(null, 1, "OK", '2018-05-24', '2018-08-06', '2018-05-24', null),
+	(null, 3, "Impossible", '2018-02-01', '2018-02-26', null, null);
+
 # -----------------------------------------------------------------------------
 #       TABLE : CONTRAT
 # -----------------------------------------------------------------------------
@@ -153,11 +207,17 @@ create table contrat
    foreign key(codeR) references reservation(codeR)
  )default charset='utf8';
 
+ insert into contrat values
+	(null, 1,"SOPRANO", "Contrat fini");
+
+
+/*  INSERT */
+
 
 # -----------------------------------------------------------------------------
 #       TABLE : (motiver) Type_Intervention <=> Intervention
 # -----------------------------------------------------------------------------
-
+/*
 create table motiver
  (
    codeI int(5) not null,
@@ -179,11 +239,11 @@ create table intervenir
    foreign key(codeI) references intervention(codeI),
    foreign key(codeM) references materiel(codeM)
  )default charset='utf8';
-
+*/
 # -----------------------------------------------------------------------------
 #       TABLE : (concerner) Reservation <=> Materiel
 # -----------------------------------------------------------------------------
-
+/*
 create table concerner
   (
     codeR int(5) not null,
@@ -193,88 +253,13 @@ create table concerner
     foreign key(codeR) references reservation(codeR),
     foreign key(codeM) references materiel(codeM)
 )default charset='utf8';
-/*  INSERT */
-
-
-/*  TYPE TECHNICIEN */
-
-insert into type_technicien values
-(null,"Mainteneur"),
-(null,"Réparateur"),
-(null,"Installateur");
-
-/*  TYPE INTERVENTION */
-
-insert into type_intervention values
-(null,"Maintenance"),
-(null,"Réparation"),
-(null,"Installation");
-
-/*  TYPE CLIENT */
-
-insert into type_client values
-(null,"Professionnelle"),
-(null,"Particulier"),
-(null,"Entreprise");
-
-/*  TYPE MATERIEL */
-
-insert into type_materiel values
-(null,"Bricolage"),
-(null,"Engin de chantier"),
-(null,"Jardinage");
-
-
-/* TECHNICIEN */
-
-insert into technicien values
-(null, 1, "motdepasse4", "George", "MICHAEL", "gm@gmail.com"),
-(null, 2, "motdepasse3", "Charles", "DUPONT", "cd@gmail.com"),
-(null, 3, "motde passe2", "Henri", "DUROI", "hdr@gmail.com"),
-(null, 2, "motdepasse1", "Ahmed", "BENALI", "aba@gmial.com"),
-(null, 1, "mdp", "Jeremy", "DAUVOIS", "dawnstriked@gmail.com");
-
-/* INTERVENTION */
-
-insert into intervention values
-(null, 1, 1,'10:10:00', "RAS", "Fini"),
-(null, 2, 1,'00:30:00', "Manque outil adéquat", "Fini"),
-(null, 3, 2,'1:00:00', "Moins de temps que prévu", "Fini"),
-(null, 2, 3,'00:10:00', "Remplacement du matériel du client par un neuf", "Fini"),
-(null, 1, 4,'5:15:00', "Changement de pièce sur l'engin", "Fini"),
-(null, 3, 2,'1:00:00', "RAS", "Fini"),
-(null, 1, 4,'00:00:00', "En Cours", "En Cours");
-
-/* CLIENT */
-
-insert into client values
-(null,1,"mdp123","a@gmail.com","JEAN","157 Rue de la Chouette","0652216408","1995-09-08",3,null, null, null),
-(null,2,"mdp132","b@gmail.com","SKOIZER","158 Rue de la Chouette","0621640865","1991-01-03",3,"uhcoe", null, null),
-(null,3,"mdp321","c@gmail.com","HULOT","159 Rue de la Chouette","0652216408","1982-09-08",2,null, null, null),
-(null,2,"mdp231","d@gmail.com", "MORETI","34 Rue de la Marche","0654287689","1975-03-12",1,"icjros", null, null);
-
-/* MATERIEL */
-
-insert into materiel values
-(null, 1, "Marteau-piqueur", "1700W 60 joules - Livré en coffret métallique avec 2 burins - Grantie de 3 ans", 149.99, 16, 3),
-(null, 3, "Tuyau d'arrosage nu", "Resistant aux UV - PVC - 50m - Diametre intérieur 18.5mm - Diametre extérieur 23mm",74.99,11.062, 5),
-(null, 2, "Pelleteuse", "Profondeur d'excavation max 6.20m - Diesel - Hauteur 3.01m - Longeur 9.42m - Largeur 2.98m", 1220,22000, 1),
-(null, 2, "Betonnière", "Energie : Electrique - Capacite : 160l Matière principale : Acier - Usage : petit chantier", 229.00, 46, 4),
-(null, 2, "Brouette de chantier", "Acier - Diametre roue 400mm - Contenance 100l/200kg", 55, 10, 5),
-(null, 3, "Brouette Jardinage", "Resine - Dimension 111x68 5x68 60cm", 39.95, 12, 2);
 
 /*  ETC ... */
-
-insert into reservation values
-(null, 1, "OK", '2018-05-24', '2018-08-06', '2018-05-24', null),
-(null, 3, "Impossible", '2018-02-01', '2018-02-26', null, null);
-
-insert into contrat values
-(null, 1,"SOPRANO", "Contrat fini");
-
+/*
 insert into concerner VALUES
 (1,3,2),
 (2,2,1);
+*/
 /*    Triggers    */
 
 Drop trigger if exists verifAge ;
@@ -368,7 +353,7 @@ end if;
 END //
 Delimiter ;
 
-/*Trigger numero Siret_Siren (expression regulière )*/
+/*Trigger numero Siret_Siren (expression regulière )
 
 Drop trigger if exists verifSir
 Delimiter //
@@ -379,11 +364,11 @@ BEGIN
 if new.numSiret REGEXP_LIKE (numSiret {14}-[0-9])
 
 
+*/
 
 
+create view view_comCli(Nom,CodeClient,nbCommande) as select nom, client.codeC, count(distinct codeR) from client, reservation where client.codeC=reservation.codeC group by codeC;
 
-create view comCli(Nom,CodeClient,nbCommande) as select nom, client.codeC, count(distinct codeR) from client, reservation where client.codeC=reservation.codeC group by codeC;
+create view view_comMois(nbCommande,Mois) as select count(distinct codeR), month(dateD) from reservation group by month(dateD);
 
-create view comMois(nbCommande,Mois) as select count(distinct codeR), month(dateD) from reservation group by month(dateD);
-
-create view comAn(nbCommande,Annees) as select count(distinct codeR), year(dateD) from reservation group by year(dateD);
+create view view_comAn(nbCommande,Annees) as select count(distinct codeR), year(dateD) from reservation group by year(dateD);
