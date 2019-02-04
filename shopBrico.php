@@ -48,7 +48,7 @@
         <div class="mobile-nav">
             <!-- Navbar Brand -->
             <div class="amado-navbar-brand">
-                <a href="index.php"><img src="img/core-img/logo.png" alt=""></a>
+                <a href="index.php"><img src="img/image/roilles.png" alt=""></a>
             </div>
             <!-- Navbar Toggler -->
             <div class="amado-navbar-toggler">
@@ -69,8 +69,8 @@
             <!-- Amado Nav -->
             <nav class="amado-nav">
                 <ul>
-                    <li><a href="index.php">Home</a></li>
-                    <li class="active"><a href="shop.php">Magasin</a></li>
+                    <li><a href="index.php">Accueil</a></li>
+                    <li class="active"><a href="shopBrico.php">Magasin</a></li>
                     <li><a href="connexion.php">Se connecter</a></li>
                     <li><a href="inscription.php">S'inscrire</a></li>
                 </ul>
@@ -107,13 +107,13 @@
             </div>
 
             <!-- ##### Single Widget ##### -->
-        
+
 
             <!-- ##### Single Widget ##### -->
-            
+
 
             <!-- ##### Single Widget ##### -->
-            
+
         </div>
 
         <div class="amado_product_area section-padding-100">
@@ -123,7 +123,7 @@
                     <div class="col-12">
                         <div class="product-topbar d-xl-flex align-items-end justify-content-between">
                             <!-- Total Products -->
-                            
+
                             <!-- Sorting -->
                         </div>
                     </div>
@@ -203,7 +203,7 @@
                         </div>
                     </div>
 
-                    
+
                     </div>
                 </div>
 
@@ -246,7 +246,7 @@
                     <div class="single_widget_area">
                         <!-- Logo -->
                         <div class="footer-logo mr-50">
-                            <a href="index.html"><img src="img/image/roilles.PNG" alt=""></a>
+                            <a href="index.php"><img src="img/image/roilles.PNG" alt=""></a>
                         </div>
                         <!-- Copywrite Text -->
                         <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -264,19 +264,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                 <div class="collapse navbar-collapse" id="footerNavContent">
                                     <ul class="navbar-nav ml-auto">
                                         <li class="nav-item active">
-                                            <a class="nav-link" href="index.php">Home</a>
+                                            <a class="nav-link" href="index.php">Accueil</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="shopCons.php">Shop</a>
+                                            <a class="nav-link" href="shopBrico.php">Magasin</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="product-details.html">Product</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="panier.php">Cart</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="checkout.html">Checkout</a>
+                                            <a class="nav-link" href="panier.php">panier</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -288,6 +282,8 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         </div>
     </footer>
     <!-- ##### Footer Area End ##### -->
+
+
 
     <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>

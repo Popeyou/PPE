@@ -1,3 +1,7 @@
+<?php
+  session_start();
+	include ('controleur/controleur.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -48,7 +52,7 @@
         <div class="mobile-nav">
             <!-- Navbar Brand -->
             <div class="amado-navbar-brand">
-                <a href="index.php"><img src="img/core-img/logo.png" alt=""></a>
+                <a href="index.php"><img src="img/image/roilles.png" alt=""></a>
             </div>
             <!-- Navbar Toggler -->
             <div class="amado-navbar-toggler">
@@ -69,8 +73,8 @@
             <!-- Amado Nav -->
             <nav class="amado-nav">
                 <ul>
-                    <li><a href="index.php">Home</a></li>
-                    <li class="active"><a href="shop.php">Magasin</a></li>
+                    <li><a href="index.php">Accueil</a></li>
+                    <li class="active"><a href="shopCons.php">Magasin</a></li>
                     <li><a href="connexion.php">Se connecter</a></li>
                     <li><a href="inscription.php">S'inscrire</a></li>
                 </ul>
@@ -107,13 +111,13 @@
             </div>
 
             <!-- ##### Single Widget ##### -->
-        
+
 
             <!-- ##### Single Widget ##### -->
-            
+
 
             <!-- ##### Single Widget ##### -->
-            
+
         </div>
 
         <div class="amado_product_area section-padding-100">
@@ -144,7 +148,7 @@
                                 <div class="product-meta-data">
                                     <div class="line"></div>
                                     <p class="product-price">360€</p>
-                                    <a href="product-details.html">
+                                    <a href="product-details.php?id=1">
                                         <h6>Betonnière Caterpillar</h6>
                                     </a>
                                 </div>
@@ -181,7 +185,7 @@
                                 <div class="product-meta-data">
                                     <div class="line"></div>
                                     <p class="product-price">600€</p>
-                                    <a href="product-details.html">
+                                    <a href="product-details.php?id=2">
                                         <h6>Betonniere thermique</h6>
                                     </a>
                                 </div>
@@ -205,7 +209,7 @@
 
                 </div>
 
-                
+
             </div>
         </div>
     </div>
@@ -245,7 +249,7 @@
                     <div class="single_widget_area">
                         <!-- Logo -->
                         <div class="footer-logo mr-50">
-                            <a href="index.html"><img src="img/image/roilles.PNG" alt=""></a>
+                            <a href="index.php"><img src="img/image/roilles.PNG" alt=""></a>
                         </div>
                         <!-- Copywrite Text -->
                         <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
@@ -263,19 +267,13 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                 <div class="collapse navbar-collapse" id="footerNavContent">
                                     <ul class="navbar-nav ml-auto">
                                         <li class="nav-item active">
-                                            <a class="nav-link" href="index.html">Home</a>
+                                            <a class="nav-link" href="index.php">Accueil</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="shop.html">Shop</a>
+                                            <a class="nav-link" href="shopCons.php">Magasin</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="product-details.html">Product</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="panier.php">Cart</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="checkout.html">Checkout</a>
+                                            <a class="nav-link" href="panier.php">Panier</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -287,6 +285,72 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         </div>
     </footer>
     <!-- ##### Footer Area End ##### -->
+
+    <!-- PHP -->
+    <center>
+
+        <?php
+    						if (isset($_GET['id'])) $id=$_GET['id'];
+    						else $id=0;
+
+    						//instanciation d'un controleur
+    						$unC = new controleur('localhost','troc','root','');
+
+    								  $unC->setTable('enfant');
+    						            $resultats = $unC->selectAll();
+    						            if (isset($_POST['Afficher']))
+    						            {
+    						                $age = $_POST['age'];
+    						                if ($age == "")
+    						                {
+    						                    $resultats = $unC->selectAll();
+    						                }
+    						                else
+    						                {
+    						                    $champs = array('ide','nome','prenome','age','mdp','email');
+    						                    $where = array('age'=>$age);
+    						                    $operateur = "";
+    						                    $resultats = $unC->selectWhere($champs,$where,$operateur);
+    						                }
+
+    						            }
+    						            else if (isset($_POST['Supprimer']))
+    						            {
+    						                $where =array('ide'=>$_POST['ide']);
+    						                $unC->delete($where);
+    						                header("Refresh:0");
+    						            }
+    						            $action = (isset($_GET['action']) ? $_GET['action'] : '');
+    									//if
+    									if($action=='e')
+    									{
+    										$ide = $_GET['ide'];
+    										$unC->setTable('enfant');
+    										$where = array('ide');
+    										$tab= array('nome','prenome','age','mdp','email');
+    										$lesResultats = $unC->selectWhere($tab, $where, "");
+    										$unResultat = $lesResultats[0];
+    										$unResultat['ide'] = $ide;
+    										include('vue/vue_update.php');
+    										if(isset($_POST['Valider']))
+    										{
+    											$tab = array("nome" => $_POST['nome'],
+    														"prenome"=>$_POST['prenome'],
+    														"age"=>$_POST['age'],
+                                "mdp"=>$_POST['mdp'],
+    														"email"=>$_POST['email']
+
+    													);
+    											$where = array("ide"=>$_POST['ide']);
+    											$unC->update($tab, $where);
+    											header("Refresh:0");
+    											echo"</br> Modification effectuée !";
+    										}
+    									}
+    								include('product-details.php');
+
+        ?>
+      </center>
 
     <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
