@@ -145,7 +145,8 @@ create table type_materiel
  insert into type_materiel values
 	(null,"Bricolage"),
 	(null,"Engin de chantier"),
-	(null,"Jardinage");
+	(null,"Jardinage"),
+  (null,"Construction");
 
 # -----------------------------------------------------------------------------
 #       TABLE : MATERIEL
@@ -254,9 +255,22 @@ create table concerner
     foreign key(codeM) references materiel(codeM)
 )default charset='utf8';
 
+/*  ETC ... */
+
 insert into concerner VALUES
 (1,3,2),
 (2,2,1);
+
+/*  PANIER  */
+
+create table panier
+  (
+    codeC int(5),
+    codeM int(5),
+    primary key (codeC,codeM),
+    foreign key (codeC) references client(codeC),
+    foreign key (codeM) references materiel(codeM)
+    )default charset='utf8';
 
 /*    Triggers    */
 
@@ -357,7 +371,7 @@ Drop trigger if exists verifSir
 Delimiter //
 create trigger verifSiret
 after update on client
-for each row 
+for each row
 BEGIN
 if new.numSiret REGEXP_LIKE (numSiret {14}-[0-9])
 

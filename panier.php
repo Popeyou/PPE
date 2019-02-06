@@ -1,3 +1,8 @@
+<?php
+session_start();
+include ('controleur/controleur.php');
+require_once('fonctionPanier.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +14,7 @@
     <!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title  -->
-    <title>Amado - Furniture Ecommerce Template | Cart</title>
+    <title>Roilles SA - Panier</title>
 
     <!-- Favicon  -->
     <link rel="icon" href="img/core-img/favicon.ico">
@@ -20,8 +25,29 @@
 
 </head>
 
+
 <body>
-    <!-- Search Wrapper Area Start -->
+<?php
+     try
+    {
+      $bdd = new PDO('mysql:host=localhost;dbname=location;charset=utf8', 'root', '');
+    }
+
+
+
+    catch (Exception $e)
+    {
+      die('Erreur : ' . $e->getMessage());
+    }
+        if (!empty($_GET['id']))
+        {
+
+
+        $requete = $bdd->query("insert into panier values (".$_SESSION['id'].",".$_GET['id'].")");
+
+        }
+        ?>
+         <!-- Search Wrapper Area Start -->
     <div class="search-wrapper section-padding-100">
         <div class="search-close">
             <i class="fa fa-close" aria-hidden="true"></i>
@@ -107,76 +133,42 @@
                             <table class="table table-responsive">
                                 <thead>
                                     <tr>
+                                        <td>Votre panier</td>
                                         <th></th>
-                                        <th>Name</th>
-                                        <th>Price</th>
-                                        <th>Quantity</th>
+                                        <th>Libellé produit</th>
+                                        <th>Prix</th>
+                                        <th>Quantité</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td class="cart_product_img">
-                                            <a href="#"><img src="img/bg-img/cart1.jpg" alt="Product"></a>
-                                        </td>
-                                        <td class="cart_product_desc">
-                                            <h5>White Modern Chair</h5>
-                                        </td>
-                                        <td class="price">
-                                            <span>$130</span>
-                                        </td>
-                                        <td class="qty">
-                                            <div class="qty-btn d-flex">
-                                                <p>Qty</p>
-                                                <div class="quantity">
-                                                    <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                    <input type="number" class="qty-text" id="qty" step="1" min="1" max="300" name="quantity" value="1">
-                                                    <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cart_product_img">
-                                            <a href="#"><img src="img/bg-img/cart2.jpg" alt="Product"></a>
-                                        </td>
-                                        <td class="cart_product_desc">
-                                            <h5>Minimal Plant Pot</h5>
-                                        </td>
-                                        <td class="price">
-                                            <span>$10</span>
-                                        </td>
-                                        <td class="qty">
-                                            <div class="qty-btn d-flex">
-                                                <p>Qty</p>
-                                                <div class="quantity">
-                                                    <span class="qty-minus" onclick="var effect = document.getElementById('qty2'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                    <input type="number" class="qty-text" id="qty2" step="1" min="1" max="300" name="quantity" value="1">
-                                                    <span class="qty-plus" onclick="var effect = document.getElementById('qty2'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="cart_product_img">
-                                            <a href="#"><img src="img/bg-img/cart3.jpg" alt="Product"></a>
-                                        </td>
-                                        <td class="cart_product_desc">
-                                            <h5>Minimal Plant Pot</h5>
-                                        </td>
-                                        <td class="price">
-                                            <span>$10</span>
-                                        </td>
-                                        <td class="qty">
-                                            <div class="qty-btn d-flex">
-                                                <p>Qty</p>
-                                                <div class="quantity">
-                                                    <span class="qty-minus" onclick="var effect = document.getElementById('qty3'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                                    <input type="number" class="qty-text" id="qty3" step="1" min="1" max="300" name="quantity" value="1">
-                                                    <span class="qty-plus" onclick="var effect = document.getElementById('qty3'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <?php
+                                    $req = $bdd->query("select * from panier where codeC = ".$_SESSION['id']."");
+                                    while ($donnees = $req->fetch())
+                                    {
+                                        $produits = $bdd->query("select * from materiel where codeM = ".$donnees['codeM']."");
+
+                                        while ($data = $produits->fetch())
+                                        {
+
+
+                                            echo "                                    
+                                        <tr>
+                                            <td class='cart_product_img'>
+                                                <a href='#''><img src='img/bg-img/cart1.jpg' alt='Product'></a>
+                                            </td>
+                                            <td class='cart_product_desc'>
+                                                <h5>".$data['nom']."</h5>
+                                            </td>
+                                            <td class='price'>
+                                                <span>".$data['prix']." €</span>
+                                            </td>
+                                            
+                                        </tr>";
+                                        }
+                                    }
+                                    ?>
+
+
                                 </tbody>
                             </table>
                         </div>
@@ -276,6 +268,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         </div>
     </footer>
     <!-- ##### Footer Area End ##### -->
+   
 
     <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>

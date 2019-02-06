@@ -79,11 +79,7 @@
                     <li><a href="inscription.php">S'inscrire</a></li>
                 </ul>
             </nav>
-            <!-- Button Group -->
-            <div class="amado-btn-group mt-30 mb-100">
-                <a href="#" class="btn amado-btn mb-15"></a>
-                <a href="#" class="btn amado-btn active"></a>
-            </div>
+
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
                 <a href="panier.php" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Panier <span>(0)</span></a>
@@ -97,7 +93,7 @@
             <!-- ##### Single Widget ##### -->
             <div class="widget catagory mb-50">
                 <!-- Widget Title -->
-                <h6 class="widget-title mb-30">Catagories</h6>
+                <h6 class="widget-title mb-30">Catégories</h6>
 
                 <!--  Catagories  -->
                 <div class="catagories-menu">
@@ -169,42 +165,53 @@
                         </div>
                     </div>
 
-                    <!-- Single Product Area -->
-                    <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                        <div class="single-product-wrapper">
+                    <?php
+
+                  try
+                  {
+                    $bdd = new PDO('mysql:host=localhost;dbname=location;charset=utf8', 'root', '');
+                  }
+
+
+
+                  catch (Exception $e)
+                  {
+                    die('Erreur : ' . $e->getMessage());
+                  }
+                    $article = $bdd->query("select * from materiel where codeT_M = 4");
+
+                    while ($data = $article->fetch())
+                    {
+                      echo "<div class='col-12 col-sm-6 col-md-12 col-xl-6'>
+                        <div class='single-product-wrapper'>
                             <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="img/image/betonniere_thermique.jpg" alt="">
+                            <div class='product-img'>
+                                <img src='img/image/beton.png' alt=''>
                                 <!-- Hover Thumb -->
-                                <!--<img class="hover-img" src="img/product-img/product3.jpg" alt="">-->
                             </div>
 
                             <!-- Product Description -->
-                            <div class="product-description d-flex align-items-center justify-content-between">
+
+                            <div class='product-description d-flex align-items-center justify-content-between'>
                                 <!-- Product Meta Data -->
-                                <div class="product-meta-data">
-                                    <div class="line"></div>
-                                    <p class="product-price">600€</p>
-                                    <a href="product-details.php?id=2">
-                                        <h6>Betonniere thermique</h6>
+                                <div class='product-meta-data'>
+                                    <div class='line'></div>
+                                    <p class='product-price'>".$data['prix']." €</p>
+                                    <a href='product-details.html'>
+                                        <h6>".$data['nom']."</h6>
                                     </a>
                                 </div>
                                 <!-- Ratings & Cart -->
-                                <div class="ratings-cart text-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="cart">
-                                        <a href="panier.php" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
+                                <div class='ratings-cart text-right'>
+                                    <div class='cart'>
+                                        <a href='panier.php?id=".$data['codeM']."' data-toggle='tooltip' data-placement='left' title='Add to Cart'><img src='img/core-img/cart.png' alt=''></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>";
+                    }
+                    ?>
 
 
                 </div>
@@ -286,71 +293,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     </footer>
     <!-- ##### Footer Area End ##### -->
 
-    <!-- PHP -->
-    <center>
 
-        <?php
-    						if (isset($_GET['id'])) $id=$_GET['id'];
-    						else $id=0;
-
-    						//instanciation d'un controleur
-    						$unC = new controleur('localhost','troc','root','');
-
-    								  $unC->setTable('enfant');
-    						            $resultats = $unC->selectAll();
-    						            if (isset($_POST['Afficher']))
-    						            {
-    						                $age = $_POST['age'];
-    						                if ($age == "")
-    						                {
-    						                    $resultats = $unC->selectAll();
-    						                }
-    						                else
-    						                {
-    						                    $champs = array('ide','nome','prenome','age','mdp','email');
-    						                    $where = array('age'=>$age);
-    						                    $operateur = "";
-    						                    $resultats = $unC->selectWhere($champs,$where,$operateur);
-    						                }
-
-    						            }
-    						            else if (isset($_POST['Supprimer']))
-    						            {
-    						                $where =array('ide'=>$_POST['ide']);
-    						                $unC->delete($where);
-    						                header("Refresh:0");
-    						            }
-    						            $action = (isset($_GET['action']) ? $_GET['action'] : '');
-    									//if
-    									if($action=='e')
-    									{
-    										$ide = $_GET['ide'];
-    										$unC->setTable('enfant');
-    										$where = array('ide');
-    										$tab= array('nome','prenome','age','mdp','email');
-    										$lesResultats = $unC->selectWhere($tab, $where, "");
-    										$unResultat = $lesResultats[0];
-    										$unResultat['ide'] = $ide;
-    										include('vue/vue_update.php');
-    										if(isset($_POST['Valider']))
-    										{
-    											$tab = array("nome" => $_POST['nome'],
-    														"prenome"=>$_POST['prenome'],
-    														"age"=>$_POST['age'],
-                                "mdp"=>$_POST['mdp'],
-    														"email"=>$_POST['email']
-
-    													);
-    											$where = array("ide"=>$_POST['ide']);
-    											$unC->update($tab, $where);
-    											header("Refresh:0");
-    											echo"</br> Modification effectuée !";
-    										}
-    									}
-    								include('product-details.php');
-
-        ?>
-      </center>
 
     <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>

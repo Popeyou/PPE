@@ -74,20 +74,20 @@ include("controleur/controleur.php")
             <!-- Amado Nav -->
             <nav class="amado-nav">
                 <ul>
-                    <li class="active"><a href="index.php">Home</a></li>
+                    <li class="active"><a href="index.php">Accueil</a></li>
                     <li><a href="shopCons.php">Magasin</a></li>
                     <?php
                     if(!isset($_SESSION['mail'])){
-                        echo "<li><a href='inscription.php'>S'inscrire</a></li>"; 
+                        echo "<li><a href='inscription.php'>S'inscrire</a></li>";
                         echo "<li><a href='connexion.php'>Se connecter</a></li>";
-                    } 
+                    }
                     else
                     {
                         echo "<li><a href='profil.php'>Mon profil</a></li>";
                         echo "<li><a href='deconnexion.php'>Déconnexion</a></li>";
                     }
                     ?>
-                    
+
                 </ul>
             </nav>
             <!-- Button Group -->
@@ -102,9 +102,14 @@ include("controleur/controleur.php")
             </div>
         </header>
         <!-- Header Area End -->
-
-        <h1> Test Video </h1>
-                <object width="425" height="344" data="https://www.youtube.com/embed/F9Bo89m2f6g"></object>
+        <div class="row align-items-center">
+            <div class="col-10 col-lg-4 col-xl-11">
+                <h1>Location de matériel Roilles</h1>
+                  <div>
+                      <p>pour tous vos besoins de travaux ...</p>
+                  </div>
+            </div>
+        </div>
     </div>
     <!-- ##### Main Content Wrapper End ##### -->
 
