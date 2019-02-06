@@ -217,7 +217,7 @@ create table contrat
 # -----------------------------------------------------------------------------
 #       TABLE : (motiver) Type_Intervention <=> Intervention
 # -----------------------------------------------------------------------------
-/*
+
 create table motiver
  (
    codeI int(5) not null,
@@ -239,11 +239,11 @@ create table intervenir
    foreign key(codeI) references intervention(codeI),
    foreign key(codeM) references materiel(codeM)
  )default charset='utf8';
-*/
+
 # -----------------------------------------------------------------------------
 #       TABLE : (concerner) Reservation <=> Materiel
 # -----------------------------------------------------------------------------
-/*
+
 create table concerner
   (
     codeR int(5) not null,
@@ -254,12 +254,10 @@ create table concerner
     foreign key(codeM) references materiel(codeM)
 )default charset='utf8';
 
-/*  ETC ... */
-/*
 insert into concerner VALUES
 (1,3,2),
 (2,2,1);
-*/
+
 /*    Triggers    */
 
 Drop trigger if exists verifAge ;
