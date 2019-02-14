@@ -36,7 +36,7 @@ create table technicien
    primary key(codeT),
    foreign key(codeT_T) references type_technicien(codeT_T)
  )default charset='utf8';
-
+ 
  insert into technicien values
 	(null, 1, "motdepasse4", "George", "MICHAEL", "gm@gmail.com"),
 	(null, 2, "motdepasse3", "Charles", "DUPONT", "cd@gmail.com"),
