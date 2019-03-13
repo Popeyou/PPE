@@ -1,11 +1,5 @@
 <?php
 session_start();
-
-if($_SESSION['grade'] != 'admin'){
-    //accès refusé si pas 'admin'
-   header('Location: index.php');  
-   }
-
 include("controleur/controleur.php")
 ?>
 

@@ -12,16 +12,20 @@ if (!isset($_POST['Connexion']))
 }
 else
 {
-	$champs = array('codeC','mail','adresse','nom');
+	$champs = array('codeC','mail','adresse','nom', 'grade');
 	$where = array('mail'=>$_POST['mail'],'mdpc'=>sha1($_POST['mdpc']));
 	$unC->setTable('client');
 	$unResultat = $unC->verif_connexion($champs,$where," and ");
 	var_dump($unResultat);
+	
 	if ($unResultat['nb'] == 0)
 	{
 		echo "Veuillez vérifier vos identifiants";
 	}
-	else
+	else if($unResultat['grade']=="admin"){
+		echo "<script type='text/javascript'>document.location.replace('admin.php');</script>";
+	}
+	else if ($unResultat['grade']=="")
 	{
 		$_SESSION['id'] = $unResultat['codeC'];
 		$_SESSION['nom'] = $unResultat['nom'];
@@ -33,9 +37,6 @@ else
 		$_SESSION['mail'] = $unResultat['mail'];
 		$_SESSION['grade'] = $unResultat['grade'];
 		echo "<script type='text/javascript'>document.location.replace('index.php');</script>";
-	}
-	if($unResultat['grade']==["admin"]){
-		echo "<script type='text/javascript'>document.location.replace('admin.php');</script>";
 	}
 }
 ?>
