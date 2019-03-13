@@ -3,8 +3,6 @@ create database location;
 
   use location;
 
-
-
 # -----------------------------------------------------------------------------
 #       TABLE : TYPE TECHNICIEN
 # -----------------------------------------------------------------------------
@@ -161,17 +159,19 @@ create table materiel
    prix float(6.2),
    poids float(5.2),
    stock int(2),
+   image varchar(255),
    primary key(codeM),
    foreign key(codeT_M) references type_materiel(codeT_M)
  )default charset='utf8';
 
 insert into materiel values
-	(null, 1, "Marteau-piqueur", "1700W 60 joules - Livré en coffret métallique avec 2 burins - Grantie de 3 ans", 149.99, 16, 3),
-	(null, 3, "Tuyau d'arrosage nu", "Resistant aux UV - PVC - 50m - Diametre intérieur 18.5mm - Diametre extérieur 23mm",74.99,11.062, 5),
-	(null, 2, "Pelleteuse", "Profondeur d'excavation max 6.20m - Diesel - Hauteur 3.01m - Longeur 9.42m - Largeur 2.98m", 1220,22000, 1),
-	(null, 2, "Betonnière", "Energie : Electrique - Capacite : 160l Matière principale : Acier - Usage : petit chantier", 229.00, 46, 4),
-	(null, 2, "Brouette de chantier", "Acier - Diametre roue 400mm - Contenance 100l/200kg", 55, 10, 5),
-	(null, 3, "Brouette Jardinage", "Resine - Dimension 111x68 5x68 60cm", 39.95, 12, 2);
+	(null, 1, "Marteau-piqueur", "1700W 60 joules - Livré en coffret métallique avec 2 burins - Grantie de 3 ans", 149.99, 16, 3, "img/image/marteau_piqueur.jpg"),
+	(null, 3, "Tuyau d'arrosage", "Resistant aux UV - PVC - 50m - Diametre intérieur 18.5mm - Diametre extérieur 23mm",74.99,11.062, 5, "img/image/tuyau.jpg"),
+	(null, 2, "Pelleteuse", "Profondeur d'excavation max 6.20m - Diesel - Hauteur 3.01m - Longeur 9.42m - Largeur 2.98m", 1220,22000, 1, "img/image/pelleteuse.jpg"),
+	(null, 2, "Betonnière", "Energie : Electrique - Capacite : 160l Matière principale : Acier - Usage : petit chantier", 229.00, 46, 4, "img/image/betonniere.jpg"),
+	(null, 2, "Brouette de chantier", "Acier - Diametre roue 400mm - Contenance 100l/200kg", 55, 10, 5, "img/image/brouette.jpg"),
+	(null, 3, "Brouette Jardinage", "Resine - Dimension 111x68 5x68 60cm", 39.95, 12, 2, "img/image/brouette_jard.jpg"),
+  (null, 4, "Perçeuse à Percussion", "700W - vitesse à vide : 50-3000 tr/min - fréquence de frappe : 45 000 cps/min", 89.99, 1.8, 5, "img/image/perceuse.jpg");
 
 # -----------------------------------------------------------------------------
 #       TABLE : RESERVATION
@@ -211,9 +211,7 @@ create table contrat
  insert into contrat values
 	(null, 1,"SOPRANO", "Contrat fini");
 
-
 /*  INSERT */
-
 
 # -----------------------------------------------------------------------------
 #       TABLE : (motiver) Type_Intervention <=> Intervention
@@ -309,7 +307,6 @@ end //
 delimiter ;
 */
 
-
 /*Trigger qui rend la commande impossible si la quantité est égale à 0*/
 
 drop trigger if exists verifStock;
@@ -321,7 +318,11 @@ begin
 
 declare verif varchar(3);
 
-select materiel.stock - concerner.qte into verif from materiel, concerner, reservation where concerner.codeM = materiel.codeM and concerner.codeR = reservation.codeR and reservation.codeR = new.codeR
+select materiel.stock - concerner.qte into verif
+from materiel, concerner, reservation
+where concerner.codeM = materiel.codeM
+and concerner.codeR = reservation.codeR
+and reservation.codeR = new.codeR
 ;
 
 if ( verif ) < 0
@@ -346,7 +347,8 @@ for each row
 Begin
 update client
 set nbcom = nbCom+1
-where codeC in(select codeC from reservation where codeR=new.codeR);
+where codeC in
+(select codeC from reservation where codeR=new.codeR);
 END //
 Delimiter ;
 
@@ -365,7 +367,9 @@ end if;
 END //
 Delimiter ;
 
-/*Trigger numero Siret_Siren (expression regulière )
+/*
+
+Trigger numero Siret_Siren (expression regulière )
 
 Drop trigger if exists verifSir
 Delimiter //
@@ -375,9 +379,7 @@ for each row
 BEGIN
 if new.numSiret REGEXP_LIKE (numSiret {14}-[0-9])
 
-
 */
-
 
 create view view_comCli(Nom,CodeClient,nbCommande) as select nom, client.codeC, count(distinct codeR) from client, reservation where client.codeC=reservation.codeC group by codeC;
 

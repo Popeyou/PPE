@@ -1,7 +1,7 @@
 <?php
 session_start();
 include ('controleur/controleur.php');
-require_once('fonctionPanier.php');
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -66,7 +66,10 @@ require_once('fonctionPanier.php');
         </div>
     </div>
     <!-- Search Wrapper Area End -->
-
+    <!--
+    CLICK SUR CHECKOUT / PAYER
+    GET (codeM, qte) ENSUITE ==> insert into reservation codeM, qte ... ==> ...
+    -->
     <!-- ##### Main Content Wrapper Start ##### -->
     <div class="main-content-wrapper d-flex clearfix">
 
@@ -151,7 +154,7 @@ require_once('fonctionPanier.php');
                                         {
 
 
-                                            echo "                                    
+                                            echo "
                                         <tr>
                                             <td class='cart_product_img'>
                                                 <a href='#''><img src='img/bg-img/cart1.jpg' alt='Product'></a>
@@ -162,7 +165,7 @@ require_once('fonctionPanier.php');
                                             <td class='price'>
                                                 <span>".$data['prix']." €</span>
                                             </td>
-                                            
+
                                         </tr>";
                                         }
                                     }
@@ -268,7 +271,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         </div>
     </footer>
     <!-- ##### Footer Area End ##### -->
-   
+
 
     <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>

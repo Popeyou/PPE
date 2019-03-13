@@ -1,10 +1,35 @@
 <?php
-  session_start();
-	include ('controleur/controleur.php');
-
   require 'inc/header.php';
 ?>
 
+<?php
+
+if (isset($_GET['id'])) $id=$_GET['id'];
+else $id=0;
+
+            //instanciation d'un controleur
+            $unC = new controleur('localhost','location','root','');
+
+                  $unC->setTable('materiel');
+                        $resultats = $unC->selectAll();
+                        if (isset($_GET['id']))
+                        {
+                            $id = $_GET['id'];
+                            if ($id == "")
+                            {
+                                $resultats = $unC->selectAll();
+                            }
+                            else
+                            {
+                                $champs = array('nom','notice','prix','poids','stock','image');
+                                $where = array('codeM'=>$id);
+                                $operateur = "";
+                                $resultats = $unC->selectWhere($champs,$where,$operateur);
+                            }
+
+                        }
+                  //if
+?>
         <!-- Product Details Area Start -->
         <div class="single-product-area section-padding-100 clearfix">
             <div class="container-fluid">
@@ -14,69 +39,26 @@
                         <div class="single_product_thumb">
                             <div id="product_details_slider" class="carousel slide" data-ride="carousel">
                                 <ol class="carousel-indicators">
-                                    <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(img/product-img/pro-big-1.jpg);">
-                                    </li>
-                                    <li data-target="#product_details_slider" data-slide-to="1" style="background-image: url(img/product-img/pro-big-2.jpg);">
-                                    </li>
-                                    <li data-target="#product_details_slider" data-slide-to="2" style="background-image: url(img/product-img/pro-big-3.jpg);">
-                                    </li>
-                                    <li data-target="#product_details_slider" data-slide-to="3" style="background-image: url(img/product-img/pro-big-4.jpg);">
+                                    <li class="active" data-target="#product_details_slider" data-slide-to="0" <?php foreach($resultats as $unResultat) echo "style='background-image: url(".$unResultat['image'].")'";?>>
                                     </li>
                                 </ol>
                                 <div class="carousel-inner">
-                                    <div class="carousel-item active">
-                                        <a class="gallery_img" href="img/product-img/pro-big-1.jpg">
-                                            <img class="d-block w-100" src="img/product-img/pro-big-1.jpg" alt="First slide">
-                                        </a>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <a class="gallery_img" href="img/product-img/pro-big-2.jpg">
-                                            <img class="d-block w-100" src="img/product-img/pro-big-2.jpg" alt="Second slide">
-                                        </a>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <a class="gallery_img" href="img/product-img/pro-big-3.jpg">
-                                            <img class="d-block w-100" src="img/product-img/pro-big-3.jpg" alt="Third slide">
-                                        </a>
-                                    </div>
-                                    <div class="carousel-item">
-                                        <a class="gallery_img" href="img/product-img/pro-big-4.jpg">
-                                            <img class="d-block w-100" src="img/product-img/pro-big-4.jpg" alt="Fourth slide">
-                                        </a>
-                                    </div>
+                                  <?php
+                                  foreach($resultats as $unResultat)
+                                  echo "<div class='carousel-item active'>
+                                      <a class='gallery_img' href='".$unResultat['image']."'>
+                                          <img class='d-block w-100' src='".$unResultat['image']."'>
+                                      </a>
+                                  </div>";
+
+                                  ?>
+
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <?php
 
-                    if (isset($_GET['id'])) $id=$_GET['id'];
-                    else $id=0;
-
-                    						//instanciation d'un controleur
-                    						$unC = new controleur('localhost','location','root','');
-
-                    								  $unC->setTable('materiel');
-                    						            $resultats = $unC->selectAll();
-                    						            if (isset($_GET['id']))
-                    						            {
-                    						                $id = $_GET['id'];
-                    						                if ($id == "")
-                    						                {
-                    						                    $resultats = $unC->selectAll();
-                    						                }
-                    						                else
-                    						                {
-                    						                    $champs = array('nom','notice','prix','poids','stock');
-                    						                    $where = array('codeM'=>$id);
-                    						                    $operateur = "";
-                    						                    $resultats = $unC->selectWhere($champs,$where,$operateur);
-                    						                }
-
-                    						            }
-                    									//if
-                    ?>
 
                     <div class="col-12 col-lg-5">
                         <div class="single_product_desc">
@@ -98,7 +80,7 @@
                                         <i class="fa fa-star" aria-hidden="true"></i>
                                     </div>
                                     <div class="review">
-                                        <a href="#">Write A Review</a>
+                                        <a href="#">Voir les avis !</a>
                                     </div>
                                 </div>
                                 <!-- Avaiable -->
@@ -119,7 +101,7 @@
                                         <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-caret-up" aria-hidden="true"></i></span>
                                     </div>
                                 </div>
-                                <button type="submit" name="addtocart" value="5" class="btn amado-btn">Add to cart</button>
+                                <button type="submit" name="addtocart" value="5" class="btn amado-btn">Acheter !</button>
                             </form>
 
                         </div>

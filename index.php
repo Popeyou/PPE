@@ -120,16 +120,16 @@ include("controleur/controleur.php")
                 <!-- Newsletter Text -->
                 <div class="col-12 col-lg-6 col-xl-7">
                     <div class="newsletter-text mb-100">
-                        <h2>Subscribe for a <span>25% Discount</span></h2>
-                        <p>Nulla ac convallis lorem, eget euismod nisl. Donec in libero sit amet mi vulputate consectetur. Donec auctor interdum purus, ac finibus massa bibendum nec.</p>
+                        <h2>Faites plus de 3 achats pour obtenir une réduction de<span> 10 %</span></h2>
+                        <p>Offre non cumulable sous réserve d'acceptation des conditions d'utilisation.</p>
                     </div>
                 </div>
                 <!-- Newsletter Form -->
                 <div class="col-12 col-lg-6 col-xl-5">
                     <div class="newsletter-form mb-100">
                         <form action="#" method="post">
-                            <input type="email" name="email" class="nl-email" placeholder="Your E-mail">
-                            <input type="submit" value="Subscribe">
+                            <input type="email" name="email" class="nl-email" placeholder="Souscrivez via E-mail pour recevoir des offres exceptionnelles">
+                            <input type="submit" value="Souscrire">
                         </form>
                     </div>
                 </div>
@@ -147,7 +147,7 @@ include("controleur/controleur.php")
                     <div class="single_widget_area">
                         <!-- Logo -->
                         <div class="footer-logo mr-50">
-                            <a href="index.html"><img src="img/image/roilles.PNG" alt=""></a>
+                            <a href="index.html"><img src="img/image/roilles.PNG" width="260 px" height="160 px" alt=""></a>
                         </div>
                         <!-- Copywrite Text -->
                         <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->

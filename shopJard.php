@@ -1,3 +1,7 @@
+<?php
+  session_start();
+	include ('controleur/controleur.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,8 +75,17 @@
                 <ul>
                     <li><a href="index.php">Accueil</a></li>
                     <li class="active"><a href="shopJard.php">Magasin</a></li>
-                    <li><a href="connexion.php">Se connecter</a></li>
-                    <li><a href="inscription.php">S'inscrire</a></li>
+                    <?php
+                    if(!isset($_SESSION['mail'])){
+                        echo "<li><a href='inscription.php'>S'inscrire</a></li>";
+                        echo "<li><a href='connexion.php'>Se connecter</a></li>";
+                    }
+                    else
+                    {
+                        echo "<li><a href='profil.php'>Mon profil</a></li>";
+                        echo "<li><a href='deconnexion.php'>Déconnexion</a></li>";
+                    }
+                    ?>
                 </ul>
             </nav>
 
@@ -148,7 +161,7 @@
                       <div class='single-product-wrapper'>
                           <!-- Product Image -->
                           <div class='product-img'>
-                              <img src='img/image/beton.png' alt=''>
+                              <img src='".$data['image']."' alt=''>
                               <!-- Hover Thumb -->
                           </div>
 
@@ -159,64 +172,41 @@
                               <div class='product-meta-data'>
                                   <div class='line'></div>
                                   <p class='product-price'>".$data['prix']." €</p>
-                                  <a href='product-details.html'>
+                                  <a href='product-details.php?id=".$data['codeM']."'>
                                       <h6>".$data['nom']."</h6>
                                   </a>
                               </div>
                               <!-- Ratings & Cart -->
                               <div class='ratings-cart text-right'>
-                                  <div class='cart'>
-                                      <a href='panier.php?id=".$data['codeM']."' data-toggle='tooltip' data-placement='left' title='Add to Cart'><img src='img/core-img/cart.png' alt=''></a>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>";
+                              ";
+                              if (isset($_SESSION['id']))
+                              {
+                                echo "<div class='cart'>
+                                    <a href='panier.php?id=".$data['codeM']."' data-toggle='tooltip' data-placement='left' title='Acheter !'><img src='img/core-img/cart.png' alt=''></a>
+                                      </div>
+                                        </div>
+                                          </div>
+                                            </div>
+                                              </div>";
+                              }
+                            else
+                            {
+                              echo "</div>
+                                      </div>
+                                        </div>
+                                          </div>
+                                          ";
+                            }
                   }
                   ?>
 
-                    <!-- Single Product Area -->
-                    <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                        <div class="single-product-wrapper">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="img/image/secateur.jpg" alt="">
-                                <!-- Hover Thumb -->
-                            </div>
-
-                            <!-- Product Description -->
-                            <div class="product-description d-flex align-items-center justify-content-between">
-                                <!-- Product Meta Data -->
-                                <div class="product-meta-data">
-                                    <div class="line"></div>
-                                    <p class="product-price">17€</p>
-                                    <a href="product-details.php">
-                                        <h6>Sécateur</h6>
-                                    </a>
-                                </div>
-                                <!-- Ratings & Cart -->
-                                <div class="ratings-cart text-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="cart">
-                                        <a href="panier.php" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
 
             </div>
+
+
         </div>
     </div>
+  </div>
     <!-- ##### Main Content Wrapper End ##### -->
 
     <!-- ##### Newsletter Area Start ##### -->

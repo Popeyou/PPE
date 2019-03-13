@@ -1,3 +1,7 @@
+<?php
+  session_start();
+	include ('controleur/controleur.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -71,8 +75,17 @@
                 <ul>
                     <li><a href="index.php">Accueil</a></li>
                     <li class="active"><a href="shopBrico.php">Magasin</a></li>
-                    <li><a href="connexion.php">Se connecter</a></li>
-                    <li><a href="inscription.php">S'inscrire</a></li>
+                    <?php
+                    if(!isset($_SESSION['mail'])){
+                        echo "<li><a href='inscription.php'>S'inscrire</a></li>";
+                        echo "<li><a href='connexion.php'>Se connecter</a></li>";
+                    }
+                    else
+                    {
+                        echo "<li><a href='profil.php'>Mon profil</a></li>";
+                        echo "<li><a href='deconnexion.php'>Déconnexion</a></li>";
+                    }
+                    ?>
                 </ul>
             </nav>
 
@@ -128,40 +141,7 @@
                 <div class="row">
 
                     <!-- Single Product Area -->
-                    <div class="col-12 col-sm-6 col-md-12 col-xl-6">
-                        <div class="single-product-wrapper">
-                            <!-- Product Image -->
-                            <div class="product-img">
-                                <img src="img/image/marteaupiqueur.jpg" alt="">
-                                <!-- Hover Thumb -->
-                            </div>
 
-                            <!-- Product Description -->
-                            <div class="product-description d-flex align-items-center justify-content-between">
-                                <!-- Product Meta Data -->
-                                <div class="product-meta-data">
-                                    <div class="line"></div>
-                                    <p class="product-price">96€</p>
-                                    <a href="product-details.php">
-                                        <h6>Marteau-piqueur avec broches</h6>
-                                    </a>
-                                </div>
-                                <!-- Ratings & Cart -->
-                                <div class="ratings-cart text-right">
-                                    <div class="ratings">
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                        <i class="fa fa-star" aria-hidden="true"></i>
-                                    </div>
-                                    <div class="cart">
-                                        <a href="panier.php" data-toggle="tooltip" data-placement="left" title="Add to Cart"><img src="img/core-img/cart.png" alt=""></a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
 
                     <?php
 
@@ -169,8 +149,6 @@
                     {
                       $bdd = new PDO('mysql:host=localhost;dbname=location;charset=utf8', 'root', '');
                     }
-
-
 
                     catch (Exception $e)
                     {
@@ -180,11 +158,12 @@
 
                       while ($data = $article->fetch())
                       {
-                        echo "<div class='col-12 col-sm-6 col-md-12 col-xl-6'>
+                        echo "
+                        <div class='col-12 col-sm-6 col-md-12 col-xl-6'>
                           <div class='single-product-wrapper'>
                               <!-- Product Image -->
                               <div class='product-img'>
-                                  <img src='img/image/beton.png' alt=''>
+                                  <img src='".$data['image']."' alt=''>
                                   <!-- Hover Thumb -->
                               </div>
 
@@ -195,29 +174,41 @@
                                   <div class='product-meta-data'>
                                       <div class='line'></div>
                                       <p class='product-price'>".$data['prix']." €</p>
-                                      <a href='product-details.html'>
+                                      <a href='product-details.php?id=".$data['codeM']."'>
                                           <h6>".$data['nom']."</h6>
                                       </a>
                                   </div>
                                   <!-- Ratings & Cart -->
                                   <div class='ratings-cart text-right'>
-                                      <div class='cart'>
-                                          <a href='panier.php?id=".$data['codeM']."' data-toggle='tooltip' data-placement='left' title='Add to Cart'><img src='img/core-img/cart.png' alt=''></a>
-                                      </div>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>";
+                                  ";
+                                  if (isset($_SESSION['id']))
+                                  {
+                                    echo "<div class='cart'>
+                                        <a href='panier.php?id=".$data['codeM']."' data-toggle='tooltip' data-placement='left' title='Acheter !'><img src='img/core-img/cart.png' alt=''></a>
+                                          </div>
+                                            </div>
+                                              </div>
+                                                </div>
+                                                  </div>";
+                                  }
+                                else
+                                {
+                                  echo "</div>
+                                          </div>
+                                            </div>
+                                              </div>
+                                              ";
+                                }
                       }
                       ?>
 
 
-                    </div>
                 </div>
+
 
             </div>
         </div>
-    </div>
+  </div>
     <!-- ##### Main Content Wrapper End ##### -->
 
     <!-- ##### Newsletter Area Start ##### -->
@@ -278,7 +269,16 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
                                             <a class="nav-link" href="shopBrico.php">Magasin</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="panier.php">panier</a>
+                                          <?php
+                                          if (isset($_SESSION['id']))
+                                          {
+                                            echo "<a class='nav-link' href='panier.php?id=".$data['codeM']."' data-toggle='tooltip' data-placement='left' title='Acheter !'><img src='img/core-img/cart.png' alt=''></a>";
+                                          }
+                                          else
+                                          {
+                                            echo "string";
+                                          }
+                                          ?>
                                         </li>
                                     </ul>
                                 </div>
