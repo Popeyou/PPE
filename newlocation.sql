@@ -119,15 +119,10 @@ create table  client
    codeReduc varchar(10),
    numSiret int(14),
    numSiren int(9),
+   grade varchar(10),
    primary key(codeC),
    foreign key(codeT_C) references type_client(codeT_C)
  )default charset='utf8';
-
- insert into client values
-	(null,1,"mdp123","a@gmail.com","JEAN","CHARLES","157 Rue de la Chouette","0652216408","1995-09-08",3,null, null, null),
-	(null,2,"mdp132","b@gmail.com","SKOIZER","MAX","158 Rue de la Chouette","0621640865","1991-01-03",3,"uhcoe", null, null),
-	(null,3,"mdp321","c@gmail.com","HULOT","ZOE","159 Rue de la Chouette","0652216408","1982-09-08",2,null, null, null),
-	(null,2,"mdp231","d@gmail.com", "MORETI","PAUL","34 Rue de la Marche","0654287689","1975-03-12",1,"icjros", null, null);
 
 # -----------------------------------------------------------------------------
 #       TABLE : TYPE MATERIEL
@@ -338,7 +333,8 @@ end //
 
 delimiter ;
 
-/*Trigger qui ajoute un au num de commande client*/
+/* ============================================================================================================================
+Trigger qui ajoute un au num de commande client
 Drop trigger if exists fidCli ;
 Delimiter //
 Create trigger fidCli
@@ -352,7 +348,7 @@ where codeC in
 END //
 Delimiter ;
 
-/*Trigger code reduc*/
+Trigger code reduc
 Drop trigger if exists Reduction ;
 Delimiter //
 Create trigger Reduction
@@ -365,7 +361,7 @@ update client
 set codeReduc = "oui";
 end if;
 END //
-Delimiter ;
+Delimiter ; */
 
 /*
 
@@ -379,10 +375,19 @@ for each row
 BEGIN
 if new.numSiret REGEXP_LIKE (numSiret {14}-[0-9])
 
-*/
+==========================================================================================================================*/
 
-create view view_comCli(Nom,CodeClient,nbCommande) as select nom, client.codeC, count(distinct codeR) from client, reservation where client.codeC=reservation.codeC group by codeC;
+create view view_comCli(Nom,CodeClient,nbCommande) as 
+  select nom, client.codeC, count(distinct codeR) 
+  from client, reservation 
+  where client.codeC=reservation.codeC 
+  group by codeC;
 
-create view view_comMois(nbCommande,Mois) as select count(distinct codeR), month(dateD) from reservation group by month(dateD);
+create view view_comMois(nbCommande,Mois) as 
+  select count(distinct codeR), month(dateD) 
+  from reservation 
+  group by month(dateD);
 
-create view view_comAn(nbCommande,Annees) as select count(distinct codeR), year(dateD) from reservation group by year(dateD);
+create view view_comAn(nbCommande,Annees) as 
+select count(distinct codeR), year(dateD) 
+from reservation group by year(dateD);
