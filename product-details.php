@@ -38,10 +38,7 @@ else $id=0;
                     <div class="col-12 col-lg-7">
                         <div class="single_product_thumb">
                             <div id="product_details_slider" class="carousel slide" data-ride="carousel">
-                                <ol class="carousel-indicators">
-                                    <li class="active" data-target="#product_details_slider" data-slide-to="0" <?php foreach($resultats as $unResultat) echo "style='background-image: url(".$unResultat['image'].")'";?>>
-                                    </li>
-                                </ol>
+
                                 <div class="carousel-inner">
                                   <?php
                                   foreach($resultats as $unResultat)
@@ -66,10 +63,10 @@ else $id=0;
                             <!-- Product Meta Data -->
                             <div class="product-meta-data">
                                 <div class="line"></div>
-                                <p class="product-price"><?php foreach($resultats as $unResultat) echo $unResultat['prix']; ?> par jour</p>
-                                <a href="product-details.php">
-                                    <h6><?php foreach($resultats as $unResultat) echo $unResultat['nom']; ?></h6>
-                                </a>
+                                <p class="product-price"><?php foreach($resultats as $unResultat) echo $unResultat['prix']; ?> € par jour</p>
+                                <p>
+                                    <h3><?php foreach($resultats as $unResultat) echo $unResultat['nom']; ?></h3>
+                                </p>
                                 <!-- Ratings & Review -->
                                 <div class="ratings-review mb-15 d-flex align-items-center justify-content-between">
                                     <div class="ratings">

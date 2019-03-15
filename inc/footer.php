@@ -9,6 +9,30 @@
 <!-- Active js -->
 <script src="js/active.js"></script>
 
+<!-- ##### Newsletter Area Start ##### -->
+<section class="newsletter-area section-padding-100-0">
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- Newsletter Text -->
+            <div class="col-12 col-lg-6 col-xl-7">
+                <div class="newsletter-text mb-100">
+                    <h2>Faites plus de 3 achats pour obtenir une réduction de<span> 10 %</span></h2>
+                    <p>Offre non cumulable sous réserve d'acceptation des conditions d'utilisation.</p>
+                </div>
+            </div>
+            <!-- Newsletter Form -->
+            <div class="col-12 col-lg-6 col-xl-5">
+                <div class="newsletter-form mb-100">
+                    <form action="#" method="post">
+                        <input type="email" name="email" class="nl-email" placeholder="Votre E-mail pour recevoir des offres">
+                        <input type="submit" value="Souscrire">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 <!-- ##### Footer Area Start ##### -->
 <footer class="footer_area clearfix">
     <div class="container">
@@ -54,6 +78,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
     </div>
 </footer>
 <!-- ##### Footer Area End ##### -->
+
 
 </body>
 

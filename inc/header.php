@@ -74,7 +74,7 @@
             <nav class="amado-nav">
                 <ul>
                     <li><a href="index.php">Accueil</a></li>
-                    <li class="active"><a href="shopCons.php">Magasin</a></li>
+                    <li><a href="shopCons.php">Magasin</a></li>
                     <?php
                     if(!isset($_SESSION['mail'])){
                         echo "<li><a href='inscription.php'>S'inscrire</a></li>";
@@ -82,7 +82,7 @@
                     }
                     else
                     {
-                        echo "<li><a href='profil.php'>Mon profil</a></li>";
+                        echo "<li><a href='modifProfil.php'>Mon profil</a></li>";
                         echo "<li><a href='deconnexion.php'>Déconnexion</a></li>";
                     }
                     ?>

@@ -8,7 +8,7 @@ session_start();
 	<title>Inscription</title>
 <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="icon" type="img/image/png" href="images/icons/favicon.ico"/>
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
@@ -18,21 +18,22 @@ session_start();
 	<link rel="stylesheet" type="text/css" href="fonts/iconic/css/material-design-iconic-font.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/animsition/css/animsition.min.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
-<!--===============================================================================================-->	
+<!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="vendor/daterangepicker/daterangepicker.css">
 <!--===============================================================================================-->
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
 <!--===============================================================================================-->
+
 </head>
 <body>
-	
+
 <?php
 
 try
@@ -57,8 +58,8 @@ if(isset($_POST['forminscription']))
 
     if(!empty($_POST['mail']) AND !empty($_POST['mail2']) AND !empty($_POST['mdpc']) AND !empty($_POST['mdp2']) AND !empty($_POST['nom']))
     {
-        
-    
+
+
             if ($mail == $mail2)
             {
                 if (filter_var($mail,FILTER_VALIDATE_EMAIL))
@@ -89,14 +90,14 @@ if(isset($_POST['forminscription']))
                 }
                 else
                 {
-                    $erreur = "<br><br><strong>Votre adresse mail n'est pas valide</strong>"; 
+                    $erreur = "<br><br><strong>Votre adresse mail n'est pas valide</strong>";
                 }
             }
             else
                 {
                     $erreur = "<br><br><strong>Vos adresses mail ne correspondent pas</strong>";
                 }
-        
+
     }
     else
     {
@@ -152,7 +153,7 @@ if(isset($_POST['forminscription']))
 						<div class="wrap-login100-form-btn">
 							<div class="login100-form-bgbtn"></div>
 							<button class="login100-form-btn" type="submit" name="forminscription">S'inscrire</button>
-								
+
 						</div>
 					</div>
 
@@ -171,7 +172,7 @@ if(isset($_POST['forminscription']))
 			</div>
 		</div>
 	</div>
-	
+
 
 	<div id="dropDownSelect1"></div>
 
@@ -184,7 +185,7 @@ if(isset($erreur))
 
 
 ?>
-	
+
 <!--===============================================================================================-->
 	<script src="vendor/jquery/jquery-3.2.1.min.js"></script>
 <!--===============================================================================================-->
