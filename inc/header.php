@@ -91,7 +91,7 @@
 
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
-                <a href="panier.php" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Panier <span>(0)</span></a>
+                <a href="panier.php" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Panier</a>
             </div>
 
         </header>

@@ -357,10 +357,11 @@ Create trigger Reduction
 after update on client
 for each row
 Begin
-if (nbCom = 3)
+if (select nbCom from Client where codeC = new.codeC) = 3
 then
 update client
-set codeReduc = "oui";
+set codeReduc = "oui"
+where codeC = new.codeC;
 end if;
 END //
 Delimiter ;

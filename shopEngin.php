@@ -87,7 +87,8 @@
                                   if (isset($_SESSION['id']))
                                   {
                                     echo "<div class='cart'>
-                                        <a href='panier.php?id=".$data['codeM']."' data-toggle='tooltip' data-placement='left' title='Acheter !'><img src='img/core-img/cart.png' alt=''></a>
+                                        <a href='panier.php?id=".$data['codeM']."' data-toggle='tooltip' data-placement='left' title='Acheter !'>
+                                        <img src='img/core-img/cart.png' alt=''></a>
                                           </div>
                                             </div>
                                               </div>

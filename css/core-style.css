@@ -1395,6 +1395,14 @@ img {
     border-radius: 0;
     background-color: #f5f7fa; }
 
+    .imgmagasin{
+      float: right;
+    }
+
+    .imgcentre{
+      margin-top: 15vh;
+    }
+
 /* ##### The End ##### */
 
 /*# sourceMappingURL=core-style.css.map */
