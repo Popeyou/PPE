@@ -119,9 +119,17 @@ create table  client
    codeReduc varchar(10),
    numSiret int(14),
    numSiren int(9),
+   grade varchar(10),
    primary key(codeC),
    foreign key(codeT_C) references type_client(codeT_C)
  )default charset='utf8';
+
+  insert into client values (
+    null, 1, "40bd001563085fc35165329ea1ff5c5ecbdbbeef", "p@gmail.com", null, null , null, null , null, null , null, null , null, "admin" 
+  );
+  insert into client values (
+    null, 1, "40bd001563085fc35165329ea1ff5c5ecbdbbeef", "momo@gmail.com", null, null , null, null , null, null , null, null , null, "admin" 
+  );
 
 # -----------------------------------------------------------------------------
 #       TABLE : TYPE MATERIEL
