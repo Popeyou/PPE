@@ -85,34 +85,44 @@ include("controleur/controleur.php")
             <!-- Amado Nav -->
             <nav class="amado-nav">
                 <ul>
-                    <li><a href="index.php">Accueil</a></li>
+                    <li><a href="index.php">Home</a></li>
                     <li><a href="shopCons.php">Magasin</a></li>
                     <?php
-                    if(!isset($_SESSION['mail'])){
-                      echo "<li><a href='inscription.php'>S'inscrire</a></li>"; 
+                    if(!isset($_SESSION['mail']))
+                    {
+                      echo "<li><a href='inscription.php'>S'inscrire</a></li>";
                       echo "<li><a href='connexion.php'>Se connecter</a></li>";
-                    } 
+                    }
                     else
                     {
-                        echo "<li><a href='profil.php'>Mon profil</a></li>";
+                        echo "<li><a href='modifProfil.php'>Mon profil</a></li>";
                         echo "<li><a href='deconnexion.php'>Déconnexion</a></li>";
                     }
                     ?>
-                    
+
                 </ul>
             </nav>
+            <!-- Button Group -->
+            <div class="amado-btn-group mt-30 mb-100">
+                <a href="admin.php?page=1" class="btn amado-btn mb-15">Stat</a>
+            </div>
+            <!-- Cart Menu -->
+            <div class="cart-fav-search mb-100">
+                <a href="panier.php" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
+               <!-- <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
+                <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>-->
+            </div>
         </header>
         <!-- Header Area End -->
 
-        <h1>ESPACE ADMIN</h1>
-        
+        <h1> ADMIN </h1>
         <?php
-        
+
        if (isset($_GET['page'])) $page=$_GET['page'];
         else $page=0;
 
 
-        switch ($page) 
+        switch ($page)
         {
 
             case 1:
@@ -135,17 +145,17 @@ include("controleur/controleur.php")
                             echo"<tr>
                             <td>".$donnee['Nom']."</td>
                             <td>".$donnee['CodeClient']."</td>
-                            <td>".$donnee['nbCommande']."</td>  
+                            <td>".$donnee['nbCommande']."</td>
                                 </tr>";
                           }
                       }
                       ?></table><?php
                 if(isset($_POST['suivant']))
                 {
-                 echo "<script type='text/javascript'>document.location.replace('admin.php?page=2');</script>";     
+                 echo "<script type='text/javascript'>document.location.replace('admin.php?page=2');</script>";
                 }
                 break;
-             ?>   
+             ?>
             </br>
             </br>
             <?php
@@ -170,21 +180,21 @@ include("controleur/controleur.php")
                                 <td>".$donnee['nbCommande']."</td>
                                 <td>".$donnee['Mois']."</td>
                                 </tr>";
-                    
+
                           }
                       }
                       ?></table><?php
                 if(isset($_POST['suivant']))
                 {
-                 echo "<script type='text/javascript'>document.location.replace('admin.php?page=3');</script>";     
+                 echo "<script type='text/javascript'>document.location.replace('admin.php?page=3');</script>";
                 }
 
                 if(isset($_POST['retour']))
                 {
-                 echo "<script type='text/javascript'>document.location.replace('admin.php?page=1');</script>";     
+                 echo "<script type='text/javascript'>document.location.replace('admin.php?page=1');</script>";
                 }
                       break;
-             ?>   
+             ?>
             </br>
             </br>
             <?php
@@ -213,12 +223,85 @@ include("controleur/controleur.php")
                       ?></table><?php
                 if(isset($_POST['retour']))
                 {
-                 echo "<script type='text/javascript'>document.location.replace('admin.php?page=2');</script>";     
+                 echo "<script type='text/javascript'>document.location.replace('admin.php?page=2');</script>";
                 }
                       break;
                   }
-             ?>   
-    </div>    
+             ?>
+    </div>
+    <!-- ##### Main Content Wrapper End ##### -->
+
+    <!-- ##### Newsletter Area Start ##### -->
+    <section class="newsletter-area section-padding-100-0">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Newsletter Text -->
+                <div class="col-12 col-lg-6 col-xl-7">
+                    <div class="newsletter-text mb-100">
+                        <h2>Subscribe for a <span>25% Discount</span></h2>
+                        <p>Nulla ac convallis lorem, eget euismod nisl. Donec in libero sit amet mi vulputate consectetur. Donec auctor interdum purus, ac finibus massa bibendum nec.</p>
+                    </div>
+                </div>
+                <!-- Newsletter Form -->
+                <div class="col-12 col-lg-6 col-xl-5">
+                    <div class="newsletter-form mb-100">
+                        <form action="#" method="post">
+                            <input type="email" name="email" class="nl-email" placeholder="Your E-mail">
+                            <input type="submit" value="Subscribe">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Newsletter Area End ##### -->
+
+    <!-- ##### Footer Area Start ##### -->
+    <footer class="footer_area clearfix">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Single Widget Area -->
+                <div class="col-12 col-lg-4">
+                    <div class="single_widget_area">
+                        <!-- Logo -->
+                        <div class="footer-logo mr-50">
+                            <a href="index.html"><img src="img/image/roilles.PNG" alt=""></a>
+                        </div>
+                        <!-- Copywrite Text -->
+                        <p class="copywrite"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                    </div>
+                </div>
+                <!-- Single Widget Area -->
+                <div class="col-12 col-lg-8">
+                    <div class="single_widget_area">
+                        <!-- Footer Menu -->
+                        <div class="footer_menu">
+                            <nav class="navbar navbar-expand-lg justify-content-end">
+                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#footerNavContent" aria-controls="footerNavContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
+                                <div class="collapse navbar-collapse" id="footerNavContent">
+                                    <ul class="navbar-nav ml-auto">
+                                        <li class="nav-item active">
+                                            <a class="nav-link" href="index.php">Accueil</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="shopcons.php">Magasin</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="panier.php">Panier</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- ##### Footer Area End ##### -->
+
     <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
     <script src="js/jquery/jquery-2.2.4.min.js"></script>
     <!-- Popper js -->

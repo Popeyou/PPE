@@ -32,16 +32,16 @@
                 <div class="row">
                     <div class="col-12 col-lg-8">
                         <div class="cart-title mt-50">
-                            <h2>Shopping Cart</h2>
+                            <h2>Votre panier</h2>
                         </div>
 
                         <div class="cart-table clearfix">
                             <table class="table table-responsive">
                                 <thead>
                                     <tr>
-                                        <td>Votre panier</td>
+                                        <td>Panier</td>
                                         <th></th>
-                                        <th>Libellé produit</th>
+                                        <th>Produit</th>
                                         <th>Prix</th>
                                         <th>Quantité</th>
                                     </tr>
@@ -55,18 +55,16 @@
 
                                         while ($data = $produits->fetch())
                                         {
-
-
                                             echo "
                                         <tr>
-                                            <td class='cart_product_img'>
+                                            <td>
                                                 <a href='#''><img src='img/bg-img/cart1.jpg' alt='Product'></a>
                                             </td>
-                                            <td class='cart_product_desc'>
-                                                <h5>".$data['nom']."</h5>
+                                            <td>
+                                                ".$data['nom']."
                                             </td>
-                                            <td class='price'>
-                                                <span>".$data['prix']." €</span>
+                                            <td>
+                                                ".$data['prix']." €
                                             </td>
 
                                         </tr>";
@@ -81,14 +79,14 @@
                     </div>
                     <div class="col-12 col-lg-4">
                         <div class="cart-summary">
-                            <h5>Cart Total</h5>
+                            <h5>Total</h5>
                             <ul class="summary-table">
-                                <li><span>subtotal:</span> <span>$140.00</span></li>
-                                <li><span>delivery:</span> <span>Free</span></li>
-                                <li><span>total:</span> <span>$140.00</span></li>
+                                <li><span>Total des articles:</span> <span></span></li>
+                                <li><span>Frais de port:</span> <span>0 €</span></li>
+                                <li><span>TTC:</span> <span></span></li>
                             </ul>
                             <div class="cart-btn mt-100">
-                                <a href="panier.php" class="btn amado-btn w-100">Checkout</a>
+                                <a href="panier.php" class="btn amado-btn w-100">Payer</a>
                             </div>
                         </div>
                     </div>

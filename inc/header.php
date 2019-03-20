@@ -71,12 +71,15 @@
                 <a href="index.php"><img src="img/image/roilles.png" alt=""></a>
             </div>
             <!-- Amado Nav -->
+
+
             <nav class="amado-nav">
                 <ul>
                     <li><a href="index.php">Accueil</a></li>
                     <li><a href="shopCons.php">Magasin</a></li>
                     <?php
-                    if(!isset($_SESSION['mail'])){
+                    if(!isset($_SESSION['mail']))
+                    {
                         echo "<li><a href='inscription.php'>S'inscrire</a></li>";
                         echo "<li><a href='connexion.php'>Se connecter</a></li>";
                     }
