@@ -206,9 +206,6 @@ create table contrat
    foreign key(codeR) references reservation(codeR)
  )default charset='utf8';
 
- insert into contrat values
-	(null, 1,"SOPRANO", "Contrat fini");
-
 /*  INSERT */
 
 # -----------------------------------------------------------------------------
@@ -250,12 +247,6 @@ create table concerner
     foreign key(codeR) references reservation(codeR),
     foreign key(codeM) references materiel(codeM)
 )default charset='utf8';
-
-/*  ETC ... */
-
-insert into concerner VALUES
-(1,3,2),
-(2,2,1);
 
 /*  PANIER  */
 
