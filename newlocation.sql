@@ -136,13 +136,13 @@ create table  client
 # -----------------------------------------------------------------------------
 
 create table type_materiel
- (
-   codeT_M int(5) not null auto_increment,
-   designation enum("Bricolage","Construction","Jardinage","Engin de chantier"),
-   primary key(codeT_M)
- )default charset='utf8';
+(
+  codeT_M int(5) not null auto_increment,
+  designation enum("Bricolage","Construction","Jardinage","Engin de chantier"),
+  primary key(codeT_M)
+)default charset='utf8';
 
- insert into type_materiel values
+insert into type_materiel values
 	(null,"Bricolage"),
 	(null,"Engin de chantier"),
 	(null,"Jardinage"),
@@ -217,26 +217,26 @@ create table contrat
 # -----------------------------------------------------------------------------
 
 create table motiver
- (
-   codeI int(5) not null,
-   codeT_I int(5) not null,
-   primary key(codeI,codeT_I),
-   foreign key(codeI) references intervention(codeI),
-   foreign key(codeT_I) references type_intervention(codeT_I)
- )default charset='utf8';
+(
+  codeI int(5) not null,
+  codeT_I int(5) not null,
+  primary key(codeI,codeT_I),
+  foreign key(codeI) references intervention(codeI),
+  foreign key(codeT_I) references type_intervention(codeT_I)
+)default charset='utf8';
 
 # -----------------------------------------------------------------------------
 #       TABLE : (INTERVENIR) INTERVENTION <=> MATERIEL
 # -----------------------------------------------------------------------------
 
 create table intervenir
- (
-   codeI int(5) not null,
-   codeM int(5) not null,
-   primary key(codeI,codeM),
-   foreign key(codeI) references intervention(codeI),
-   foreign key(codeM) references materiel(codeM)
- )default charset='utf8';
+(
+  codeI int(5) not null,
+  codeM int(5) not null,
+  primary key(codeI,codeM),
+  foreign key(codeI) references intervention(codeI),
+  foreign key(codeM) references materiel(codeM)
+)default charset='utf8';
 
 # -----------------------------------------------------------------------------
 #       TABLE : (concerner) Reservation <=> Materiel
