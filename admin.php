@@ -28,7 +28,7 @@ include("controleur/controleur.php")
 <?php
         try
         {
-           $bdd = new PDO('mysql:host=localhost;dbname=location;charset=utf8', 'root', '');
+            $bdd = new PDO('mysql:host=localhost;dbname=location;charset=utf8', 'root', 'root');
         }
         catch (Exception $e)
         {
@@ -90,8 +90,8 @@ include("controleur/controleur.php")
                     <?php
                     if(!isset($_SESSION['mail']))
                     {
-                      echo "<li><a href='inscription.php'>S'inscrire</a></li>";
-                      echo "<li><a href='connexion.php'>Se connecter</a></li>";
+                        echo "<li><a href='inscription.php'>S'inscrire</a></li>";
+                        echo "<li><a href='connexion.php'>Se connecter</a></li>";
                     }
                     else
                     {
@@ -109,7 +109,7 @@ include("controleur/controleur.php")
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
                 <a href="panier.php" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
-               <!-- <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
+                <!-- <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
                 <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>-->
             </div>
         </header>
@@ -118,7 +118,7 @@ include("controleur/controleur.php")
         <h1> ADMIN </h1>
         <?php
 
-       if (isset($_GET['page'])) $page=$_GET['page'];
+        if (isset($_GET['page'])) $page=$_GET['page'];
         else $page=0;
 
 
@@ -136,26 +136,26 @@ include("controleur/controleur.php")
                 <input type="submit" name="clic" value="Commande par clients">
                 <input type="submit" name="suivant" value="requete suivante">
             </form>
-             <?php
-             if(isset($_POST['clic']))
-             {
+            <?php
+            if(isset($_POST['clic']))
+            {
                 $req = $bdd->query("select * from comCli");
-                          while ($donnee = $req->fetch())
-                          {
+                        while ($donnee = $req->fetch())
+                        {
                             echo"<tr>
                             <td>".$donnee['Nom']."</td>
                             <td>".$donnee['CodeClient']."</td>
                             <td>".$donnee['nbCommande']."</td>
                                 </tr>";
-                          }
-                      }
-                      ?></table><?php
+                        }
+                    }
+                    ?></table><?php
                 if(isset($_POST['suivant']))
                 {
-                 echo "<script type='text/javascript'>document.location.replace('admin.php?page=2');</script>";
+                echo "<script type='text/javascript'>document.location.replace('admin.php?page=2');</script>";
                 }
                 break;
-             ?>
+            ?>
             </br>
             </br>
             <?php

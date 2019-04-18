@@ -8,7 +8,7 @@ if (isset($_GET['id'])) $id=$_GET['id'];
 else $id=0;
 
             //instanciation d'un controleur
-            $unC = new controleur('localhost','location','root','');
+            $unC = new controleur('localhost','location','root','root');
 
                   $unC->setTable('materiel');
                         $resultats = $unC->selectAll();

@@ -39,7 +39,7 @@
                 <div class="single_widget_area">
                     <!-- Logo -->
                     <div class="footer-logo mr-50">
-                      <img src="img/image/roilles.PNG" width="300" height="160" alt="">
+                        <img src="img/image/roilles.PNG" width="300" height="160" alt="">
                     </div>
 
                 </div>

@@ -4,7 +4,7 @@ session_start();
 try
 {
     // On se connecte à MySQL
-    $bdd = new PDO('mysql:host=localhost;dbname=location;charset=utf8', 'root', '',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
+    $bdd = new PDO('mysql:host=localhost;dbname=location;charset=utf8', 'root', 'root',array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION ));
 
 }
 catch(Exception $e)

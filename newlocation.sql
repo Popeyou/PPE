@@ -8,13 +8,13 @@ create database location;
 # -----------------------------------------------------------------------------
 
 create table type_technicien
- (
-   codeT_T int(5) not null auto_increment,
-   libelle enum("Mainteneur","Installateur","Réparateur","Engin de chantier"),
-   primary key(codeT_T)
- )default charset='utf8';
+(
+  codeT_T int(5) not null auto_increment,
+  libelle enum("Mainteneur","Installateur","Réparateur","Engin de chantier"),
+  primary key(codeT_T)
+)default charset='utf8';
 
- insert into type_technicien values
+insert into type_technicien values
 	(null,"Mainteneur"),
 	(null,"Réparateur"),
 	(null,"Installateur");
@@ -24,16 +24,16 @@ create table type_technicien
 # -----------------------------------------------------------------------------
 
 create table technicien
- (
-   codeT int(5) not null auto_increment,
-   codeT_T int(5) not null,
-   mdp varchar(50),
-   nom varchar(25),
-   prenom varchar(25),
-   mailt varchar(50),
-   primary key(codeT),
-   foreign key(codeT_T) references type_technicien(codeT_T)
- )default charset='utf8';
+(
+  codeT int(5) not null auto_increment,
+  codeT_T int(5) not null,
+  mdp varchar(50),
+  nom varchar(25),
+  prenom varchar(25),
+  mailt varchar(50),
+  primary key(codeT),
+  foreign key(codeT_T) references type_technicien(codeT_T)
+)default charset='utf8';
 
  insert into technicien values
 	(null, 1, "motdepasse4", "George", "MICHAEL", "gm@gmail.com"),
@@ -128,7 +128,7 @@ create table  client
     null, 1, "40bd001563085fc35165329ea1ff5c5ecbdbbeef", "p@gmail.com", null, null , null, null , null, null , null, null , null, "admin"
   );
   insert into client values (
-    null, 1, "40bd001563085fc35165329ea1ff5c5ecbdbbeef", "momo@gmail.com", null, null , null, null , null, null , null, null , null, "admin"
+    null, 1, "40bd001563085fc35165329ea1ff5c5ecbdbbeef", "momo@gmail.com", null, null , null, null , null, 0 , null, null , null, "admin"
   );
 
 # -----------------------------------------------------------------------------
@@ -153,18 +153,18 @@ create table type_materiel
 # -----------------------------------------------------------------------------
 
 create table materiel
- (
-   codeM int(5) not null auto_increment,
-   codeT_M int(5) not null,
-   nom varchar(25),
-   notice varchar(255),
-   prix float(6.2),
-   poids float(5.2),
-   stock int(2),
-   image varchar(255),
-   primary key(codeM),
-   foreign key(codeT_M) references type_materiel(codeT_M)
- )default charset='utf8';
+(
+  codeM int(5) not null auto_increment,
+  codeT_M int(5) not null,
+  nom varchar(25),
+  notice varchar(255),
+  prix float(6.2),
+  poids float(5.2),
+  stock int(2),
+  image varchar(255),
+  primary key(codeM),
+  foreign key(codeT_M) references type_materiel(codeT_M)
+)default charset='utf8';
 
 insert into materiel values
 	(null, 1, "Marteau-piqueur", "1700W 60 joules - Livré en coffret métallique avec 2 burins - Grantie de 3 ans", 149.99, 16, 3, "img/image/marteau_piqueur.jpg"),
@@ -180,31 +180,35 @@ insert into materiel values
 # -----------------------------------------------------------------------------
 
 create table reservation
- (
-   codeR int(5) not null auto_increment,
-   codeC int(5) not null,
-   etat varchar(50),
-   dateD date,
-   dateF date,
-   date_retrait date,
-   date_depot date,
-   primary key(codeR),
-   foreign key(codeC) references client(codeC)
- )default charset='utf8';
+(
+  codeR int(5) not null auto_increment,
+  codeC int(5) not null,
+  etat varchar(50),
+  dateD date,
+  dateF date,
+  date_retrait date,
+  date_depot date,
+  primary key(codeR),
+  foreign key(codeC) references client(codeC)
+)default charset='utf8';
+
+insert into reservation values 
+  (null, "1", "fini", "2018-05-05", "2018-06-06", "2018-05-05", "2018-06-06"),
+  (null, "2", "fini", "2018-07-07", "2018-08-08", "2018-07-07", "2018-08-08");  
 
 # -----------------------------------------------------------------------------
 #       TABLE : CONTRAT
 # -----------------------------------------------------------------------------
 
 create table contrat
- (
-   code_contrat int(5) not null auto_increment,
-   codeR int(5) not null,
-   signature varchar(50),
-   etat varchar(50),
-   primary key(code_contrat),
-   foreign key(codeR) references reservation(codeR)
- )default charset='utf8';
+(
+  code_contrat int(5) not null auto_increment,
+  codeR int(5) not null,
+  signature varchar(50),
+  etat varchar(50),
+  primary key(code_contrat),
+  foreign key(codeR) references reservation(codeR)
+)default charset='utf8';
 
 /*  INSERT */
 
@@ -338,16 +342,6 @@ update client
 set nbcom = nbCom+1
 where codeC in
 (select codeC from reservation where codeR=new.codeR);
-END //
-Delimiter ;
-
-/*Trigger code reduc*/
-Drop trigger if exists Reduction ;
-Delimiter //
-Create trigger Reduction
-after update on client
-for each row
-Begin
 if (select nbCom from Client where codeC = new.codeC) = 3
 then
 update client
@@ -356,6 +350,7 @@ where codeC = new.codeC;
 end if;
 END //
 Delimiter ;
+
 
 /*
 
@@ -376,3 +371,5 @@ create view view_comCli(Nom,CodeClient,nbCommande) as select nom, client.codeC, 
 create view view_comMois(nbCommande,Mois) as select count(distinct codeR), month(dateD) from reservation group by month(dateD);
 
 create view view_comAn(nbCommande,Annees) as select count(distinct codeR), year(dateD) from reservation group by year(dateD);
+
+create view view_intertech (Code_Technicien, Nb_Intervention) as select t.codeT, count(i.codeI) from technicien t, intervention i where i.codeT=t.codeT group by codeT;
