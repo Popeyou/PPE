@@ -35,7 +35,7 @@ create table technicien
   foreign key(codeT_T) references type_technicien(codeT_T)
 )default charset='utf8';
 
- insert into technicien values
+insert into technicien values
 	(null, 1, "motdepasse4", "George", "MICHAEL", "gm@gmail.com"),
 	(null, 2, "motdepasse3", "Charles", "DUPONT", "cd@gmail.com"),
 	(null, 3, "motde passe2", "Henri", "DUROI", "hdr@gmail.com"),
@@ -63,19 +63,19 @@ create table type_intervention
 # -----------------------------------------------------------------------------
 
 create table intervention
- (
-   codeI int(5) not null auto_increment,
-   codeT_I int(5) not null,
-   codeT int(5) not null,
-   duree time,
-   commentaire varchar(100),
-   etat varchar(50),
-   primary key(codeI),
-   foreign key(codeT_I) references type_intervention(codeT_I),
-   foreign key(codeT) references technicien(codeT)
- )default charset='utf8';
+(
+  codeI int(5) not null auto_increment,
+  codeT_I int(5) not null,
+  codeT int(5) not null,
+  duree time,
+  commentaire varchar(100),
+  etat varchar(50),
+  primary key(codeI),
+  foreign key(codeT_I) references type_intervention(codeT_I),
+  foreign key(codeT) references technicien(codeT)
+)default charset='utf8';
 
- insert into intervention values
+insert into intervention values
 	(null, 1, 1,'10:10:00', "RAS", "Fini"),
 	(null, 2, 1,'00:30:00', "Manque outil adéquat", "Fini"),
 	(null, 3, 2,'1:00:00', "Moins de temps que prévu", "Fini"),
@@ -90,9 +90,9 @@ create table intervention
 
 create table type_client
     (
-     codeT_C int(5) not null auto_increment,
-     libelle enum("Professionnelle","Particulier","Entreprise"),
-     primary key(codeT_C)
+    codeT_C int(5) not null auto_increment,
+    libelle enum("Professionnelle","Particulier","Entreprise"),
+    primary key(codeT_C)
     )default charset='utf8';
 
 insert into type_client values
@@ -105,24 +105,24 @@ insert into type_client values
 # -----------------------------------------------------------------------------
 
 create table  client
- (
-   codeC int(5) not null auto_increment,
-   codeT_C int(5),
-   mdpc varchar(100),
-   mail varchar(50),
-   nom varchar(50),
-   prenom VARCHAR(50),
-   adresse varchar(100),
-   tel int(10),
-   datenaiss date,
-   nbCom int(5),
-   codeReduc varchar(10),
-   numSiret int(14),
-   numSiren int(9),
-   grade varchar(10),
-   primary key(codeC),
-   foreign key(codeT_C) references type_client(codeT_C)
- )default charset='utf8';
+(
+  codeC int(5) not null auto_increment,
+  codeT_C int(5),
+  mdpc varchar(100),
+  mail varchar(50),
+  nom varchar(50),
+  prenom VARCHAR(50),
+  adresse varchar(100),
+  tel int(10),
+  datenaiss date,
+  nbCom int(5),
+  codeReduc varchar(10),
+  numSiret int(14),
+  numSiren int(9),
+  grade varchar(10),
+  primary key(codeC),
+  foreign key(codeT_C) references type_client(codeT_C)
+)default charset='utf8';
 
   insert into client values (
     null, 1, "40bd001563085fc35165329ea1ff5c5ecbdbbeef", "p@gmail.com", null, null , null, null , null, null , null, null , null, "admin"
@@ -366,10 +366,28 @@ if new.numSiret REGEXP_LIKE (numSiret {14}-[0-9])
 
 */
 
-create view view_comCli(Nom,CodeClient,nbCommande) as select nom, client.codeC, count(distinct codeR) from client, reservation where client.codeC=reservation.codeC group by codeC;
+create view view_comCli(Nom,CodeClient,nbCommande) 
+as 
+select nom, client.codeC, count(distinct codeR) 
+from client, reservation 
+where client.codeC=reservation.codeC 
+group by codeC;
 
-create view view_comMois(nbCommande,Mois) as select count(distinct codeR), month(dateD) from reservation group by month(dateD);
+create view view_comMois(nbCommande,Mois) 
+as 
+select count(distinct codeR), month(dateD) 
+from reservation 
+group by month(dateD);
 
-create view view_comAn(nbCommande,Annees) as select count(distinct codeR), year(dateD) from reservation group by year(dateD);
+create view view_comAn(nbCommande,Annees) 
+as 
+select count(distinct codeR), year(dateD) 
+from reservation 
+group by year(dateD);
 
-create view view_intertech (Code_Technicien, Nb_Intervention) as select t.codeT, count(i.codeI) from technicien t, intervention i where i.codeT=t.codeT group by codeT;
+create view view_intertech (Code_Technicien, Nb_Intervention) 
+as 
+select t.codeT, count(i.codeI) 
+from technicien t, intervention i 
+where i.codeT=t.codeT 
+group by codeT;
