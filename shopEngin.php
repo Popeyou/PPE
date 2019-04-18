@@ -13,9 +13,9 @@
                 <!--  Catagories  -->
                 <div class="catagories-menu">
                     <ul>
-                        <li><a href="shopCons">Construction</a></li>
-                        <li><a href="shopBrico">Bricolage</a></li>
-                        <li><a href="shopJard">Jardinage</a></li>
+                        <li><a href="shopCons.php">Construction</a></li>
+                        <li><a href="shopBrico.pho">Bricolage</a></li>
+                        <li><a href="shopJard.php">Jardinage</a></li>
                         <li class="active"><a href="ShopEngin">Engin de chantier</a></li>
                     </ul>
                 </div>
