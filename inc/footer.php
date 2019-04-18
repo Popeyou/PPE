@@ -15,17 +15,8 @@
         <div class="row align-items-center">
             <!-- Newsletter Text -->
                 <div class="newsletter-text mb-100">
-                    <h2>Faites plus de 3 achats pour obtenir une réduction de<span> 10 %</span></h2>
+                    <h2>Vous obtenez une reduction sur votre 4ème commande.</h2>
                 </div>
-            <!-- Newsletter Form -->
-            <div class="col-12 col-lg-6 col-xl-5">
-                <div class="newsletter-form mb-100">
-                    <form action="#" method="post">
-                        <input type="email" name="email" class="nl-email" placeholder="Votre E-mail pour recevoir des offres">
-                        <input type="submit" value="Souscrire">
-                    </form>
-                </div>
-            </div>
         </div>
     </div>
 </section>
