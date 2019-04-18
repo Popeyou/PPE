@@ -20,8 +20,6 @@
             <img class="imgmagasin" src="img/image/magasin.jpg"/>
         </div>
     </div>
-    <!-- ##### Main Content Wrapper End ##### -->
-
-
+    
     <!-- ##### Footer Area Start ##### -->
 <?php require 'inc/footer.php'; ?>
