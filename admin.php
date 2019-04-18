@@ -170,31 +170,31 @@ include("controleur/controleur.php")
                 <input type="submit" name="clic" value="Commande par mois">
                 <input type="submit" name="suivant" value="requete suivante">
             </form>
-             <?php
-             if(isset($_POST['clic']))
-             {
+            <?php
+            if(isset($_POST['clic']))
+            {
                 $req = $bdd->query("select * from comMois");
-                          while ($donnee = $req->fetch())
-                          {
+                        while ($donnee = $req->fetch())
+                        {
                                 echo"<tr>
                                 <td>".$donnee['nbCommande']."</td>
                                 <td>".$donnee['Mois']."</td>
                                 </tr>";
 
-                          }
-                      }
-                      ?></table><?php
+                        }
+                    }
+                    ?></table><?php
                 if(isset($_POST['suivant']))
                 {
-                 echo "<script type='text/javascript'>document.location.replace('admin.php?page=3');</script>";
+                echo "<script type='text/javascript'>document.location.replace('admin.php?page=3');</script>";
                 }
 
                 if(isset($_POST['retour']))
                 {
-                 echo "<script type='text/javascript'>document.location.replace('admin.php?page=1');</script>";
+                    echo "<script type='text/javascript'>document.location.replace('admin.php?page=1');</script>";
                 }
-                      break;
-             ?>
+                    break;
+            ?>
             </br>
             </br>
             <?php
@@ -208,26 +208,26 @@ include("controleur/controleur.php")
                 <input type="submit" name="retour" value="précédente requete">
                 <input type="submit" name="clic" value="Commande par années">
             </form>
-             <?php
-             if(isset($_POST['clic']))
-             {
+            <?php
+            if(isset($_POST['clic']))
+            {
                 $req = $bdd->query("select * from comAn");
-                          while ($donnee = $req->fetch())
-                          {
+                        while ($donnee = $req->fetch())
+                        {
                             echo"<tr>
                                 <td>".$donnee['nbCommande']."</td>
                                 <td>".$donnee['Annees']."</td>
                                 </tr>";
-                          }
-                      }
-                      ?></table><?php
+                        }
+                    }
+                    ?></table><?php
                 if(isset($_POST['retour']))
                 {
-                 echo "<script type='text/javascript'>document.location.replace('admin.php?page=2');</script>";
+                echo "<script type='text/javascript'>document.location.replace('admin.php?page=2');</script>";
                 }
-                      break;
-                  }
-             ?>
+                    break;
+                }
+            ?>
     </div>
     <!-- ##### Main Content Wrapper End ##### -->
 

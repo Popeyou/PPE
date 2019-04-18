@@ -1,5 +1,5 @@
 <?php
-  require 'inc/header.php';
+    require 'inc/header.php';
 ?>
 
 <?php
@@ -10,7 +10,7 @@ else $id=0;
             //instanciation d'un controleur
             $unC = new controleur('localhost','location','root','root');
 
-                  $unC->setTable('materiel');
+                    $unC->setTable('materiel');
                         $resultats = $unC->selectAll();
                         if (isset($_GET['id']))
                         {
@@ -40,15 +40,15 @@ else $id=0;
                             <div id="product_details_slider" class="carousel slide" data-ride="carousel">
 
                                 <div class="carousel-inner">
-                                  <?php
-                                  foreach($resultats as $unResultat)
-                                  echo "<div class='carousel-item active'>
-                                      <a class='gallery_img' href='".$unResultat['image']."'>
-                                          <img class='d-block w-100' src='".$unResultat['image']."'>
-                                      </a>
-                                  </div>";
+                                    <?php
+                                    foreach($resultats as $unResultat)
+                                    echo "<div class='carousel-item active'>
+                                        <a class='gallery_img' href='".$unResultat['image']."'>
+                                            <img class='d-block w-100' src='".$unResultat['image']."'>
+                                        </a>
+                                    </div>";
 
-                                  ?>
+                                    ?>
 
                                 </div>
                             </div>
