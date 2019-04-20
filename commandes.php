@@ -92,8 +92,8 @@ include("controleur/controleur.php")
                     <?php
                     if(!isset($_SESSION['mail']))
                     {
-                      echo "<li><a href='inscription.php'>S'inscrire</a></li>";
-                      echo "<li><a href='connexion.php'>Se connecter</a></li>";
+                        echo "<li><a href='inscription.php'>S'inscrire</a></li>";
+                        echo "<li><a href='connexion.php'>Se connecter</a></li>";
                     }
                     else
                     {
@@ -108,7 +108,7 @@ include("controleur/controleur.php")
             <!-- Cart Menu -->
             <div class="cart-fav-search mb-100">
                 <a href="panier.php" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Panier</a>
-               <!-- <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
+                <!-- <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
                 <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>-->
             </div>
         </header>
@@ -116,7 +116,7 @@ include("controleur/controleur.php")
         </br>
         <div style="padding-left: 30px; padding-top: 70px;">
         <a href="modifProfil.php"><h3>- Profil</h3></a><a href="commandes.php"><h3>- Mes Commandes</h3></a>
-       </div>
+        </div>
         <div>
             <form method="post">
                 <table border = 1 >
@@ -128,11 +128,11 @@ include("controleur/controleur.php")
                     </tr>
                 </br>
             </form>
-             <?php
+            <?php
                 
                 $req = $bdd->query("select count(distinct codeR) as NumeroRes, dateD ,dateF,date_retrait,date_depot, etat from reservation, client where reservation.codeC=client.codeC and client.codeC=".$_SESSION['id']."");
-                          while ($donnee = $req->fetch())
-                          {
+                        while ($donnee = $req->fetch())
+                        {
                             echo"<tr>
                             <td>".$donnee['NumeroRes']."</td>
                             <td>".$donnee['dateD']."</td>
@@ -141,11 +141,11 @@ include("controleur/controleur.php")
                             <td>".$donnee['date_depot']."</td>
                             <td>".$donnee['etat']."</td>
                             </tr>";
-                          }
-                      ?>
-                      </table>
+                        }
+                    ?>
+                    </table>
             </div>
-         
+        
             </br>
             </br>
     </div>
