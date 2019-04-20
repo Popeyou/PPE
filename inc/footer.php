@@ -9,18 +9,6 @@
 <!-- Active js -->
 <script src="js/active.js"></script>
 
-<!-- ##### Newsletter Area Start ##### -->
-<section class="newsletter-area section-padding-100-0">
-    <div class="container">
-        <div class="row align-items-center">
-            <!-- Newsletter Text -->
-                <div class="newsletter-text mb-100">
-                    <h2>Vous obtenez une reduction sur votre 4ème commande.</h2>
-                </div>
-        </div>
-    </div>
-</section>
-
 <!-- ##### Footer Area Start ##### -->
 <footer class="footer_area clearfix">
     <div class="container">
@@ -30,7 +18,7 @@
                 <div class="single_widget_area">
                     <!-- Logo -->
                     <div class="footer-logo mr-50">
-                        <img src="img/image/roilles.PNG" width="300" height="160" alt="">
+                        <img src="img/image/roilles.PNG" width="150" height="80" alt="">
                     </div>
 
                 </div>

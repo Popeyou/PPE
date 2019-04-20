@@ -55,7 +55,7 @@
             <h3>
             </br>
 						<a href="modifProfil.php"><h3>- Profil</h3></a> <a href="commandes.php"><h3>- Mes Commandes</h3></a>
-					  </h3>
+						</h3>
           </p>
 					<div>
 						<h5></br>E-mail</h5>
@@ -104,17 +104,16 @@
 
 
 					<?php
-			              if(isset($erreur))
-			              {
-			                echo "<center>$erreur</center>";
-			              }
-			    ?>
+								if(isset($erreur))
+									{
+										echo "<center>$erreur</center>";
+									}
+					?>
         </div>
 			</div>
 				</form>
 			</div>
 		</div>
 	</div>
-</br>
 
   <?php require 'inc/footer.php'; ?>

@@ -1,5 +1,5 @@
 <?php
-  require 'inc/header.php';
+	require 'inc/header.php';
 ?>
 <body>
 
@@ -65,4 +65,6 @@
 					</div>
 				</form>
 
-  <?php require 'inc/footer.php'; ?>
+<?php 
+	require 'inc/footer.php'; 
+?>

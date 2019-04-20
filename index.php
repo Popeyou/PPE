@@ -22,4 +22,5 @@
     </div>
     
     <!-- ##### Footer Area Start ##### -->
+<?php require 'inc/footer2.php'; ?>
 <?php require 'inc/footer.php'; ?>
