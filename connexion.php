@@ -16,8 +16,8 @@ else
 	$unC->setTable('client');
 	$unResultat = $unC->verif_connexion($champs,$where," and ");
 	var_dump($unResultat);
-
-	if ($unResultat['nb'] == 0)
+	
+	if ($unResultat['nb'] == false)
 	{
 		echo "Veuillez vérifier vos identifiants";
 	}
@@ -33,7 +33,7 @@ else
 		$_SESSION['grade'] = $unResultat['grade'];
 		echo "<script type='text/javascript'>document.location.replace('admin.php');</script>";
 	}
-	else if ($unResultat['grade']=="")
+	else if ($unResultat['grade']== "")
 	{
 		$_SESSION['id'] = $unResultat['codeC'];
 		$_SESSION['nom'] = $unResultat['nom'];

@@ -156,8 +156,7 @@
 
                 $chaineWhere = implode (" ".$operateur." ",$tab);
             
-                $requete = "select count(*) as nb, ".$chaineChamps." from ".$this->table." where ".$chaineWhere.";";
-                //echo $requete;
+                $requete = "select count(*) as nb,".$chaineChamps." from ".$this->table." where ".$chaineWhere." GROUP BY " . $chaineChamps . ";";                //echo $requete;
                 //var_dump($donnees);
 
                 $select = $this->pdo->prepare ($requete);

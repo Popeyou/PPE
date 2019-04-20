@@ -12,7 +12,7 @@
 	<?php
 	try
 	{
-	   $bdd = new PDO('mysql:host=localhost;dbname=location;charset=utf8', 'root', 'root');
+	  $bdd = new PDO('mysql:host=localhost;dbname=location;charset=utf8', 'root', 'root');
 	}
 	catch (Exception $e)
 	{
@@ -54,7 +54,7 @@
           <p>
             <h3>
             </br>
-						    Profil
+						<a href="modifProfil.php"><h3>- Profil</h3></a> <a href="commandes.php"><h3>- Mes Commandes</h3></a>
 					  </h3>
           </p>
 					<div>
@@ -81,6 +81,7 @@
 
     <div style="padding-left: 80px; padding-top: 130px">
 					<div>
+					</br></br>
 						<h5>Nom</h5>
 						<input class="form-control" type="text" name="nom" placeholder="Votre nom" value="<?php echo $_SESSION['nom']; ?>">
 					</div>
