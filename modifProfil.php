@@ -12,11 +12,11 @@
 	<?php
 	try
 	{
-	  $bdd = new PDO('mysql:host=localhost;dbname=location;charset=utf8', 'root', 'root');
+		$bdd = new PDO('mysql:host=localhost;dbname=location;charset=utf8', 'root', 'root');
 	}
 	catch (Exception $e)
 	{
-	        die('Erreur : ' . $e->getMessage());
+				die('Erreur : ' . $e->getMessage());
 	}
 
 	if(isset($_POST['Enregistrer']))
