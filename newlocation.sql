@@ -39,6 +39,7 @@ insert into technicien values
 	(null, 1, "motdepasse4", "George", "MICHAEL", "gm@gmail.com"),
 	(null, 2, "motdepasse3", "Charles", "DUPONT", "cd@gmail.com"),
 	(null, 3, "motde passe2", "Henri", "DUROI", "hdr@gmail.com"),
+  (null, 3, "motdepasseez", "Pierre", "Barrere", "gm@gmail.com"),
 	(null, 2, "motdepasse1", "Ahmed", "BENALI", "aba@gmial.com"),
 	(null, 1, "mdp", "Jeremy", "DAUVOIS", "dawnstriked@gmail.com");
 
