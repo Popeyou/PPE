@@ -132,8 +132,7 @@
                 }
                 $chaineWhere = implode(" and ", $champsWhere);
                 //construction de la requete
-                $requete = "update ".$this->table." set ".$chaineChamps." where ".$chaineWhere." GROUP BY " . $chaineChamps . ";";
-                //var_dump($donnees);
+                $requete = "update ".$this->table." set ".$chaineChamps." where ".$chaineWhere. ";";
                 echo $requete;
                 $update = $this->pdo->prepare($requete);
                 $update->execute($donnees);
