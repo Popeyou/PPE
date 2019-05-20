@@ -266,6 +266,7 @@ create table panier
 
 /*    Triggers    */
 
+/*    Triggers qui verifie l'age   */
 Drop trigger if exists verifAge ;
 Delimiter //
 Create trigger verifAge
@@ -302,23 +303,19 @@ delimiter ;
 */
 
 /*Trigger qui rend la commande impossible si la quantité est égale à 0*/
-
 drop trigger if exists verifStock;
 delimiter //
 create trigger verifStock
 before insert on reservation
 for each row
 begin
-
 declare verif varchar(3);
-
 select materiel.stock - concerner.qte into verif
 from materiel, concerner, reservation
 where concerner.codeM = materiel.codeM
 and concerner.codeR = reservation.codeR
 and reservation.codeR = new.codeR
 ;
-
 if ( verif ) < 0
 then
         signal sqlstate '45000'
@@ -329,7 +326,6 @@ else
       where codeM in ( select codeM from concerner );
 end if;
 end //
-
 delimiter ;
 
 /*Trigger qui ajoute un au num de commande client*/
