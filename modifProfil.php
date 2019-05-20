@@ -30,21 +30,33 @@
 		$siren=htmlspecialchars($_POST['numSiren']);
 
 		if(filter_var($mail,FILTER_VALIDATE_EMAIL))
-		{
-		$requete = $bdd->prepare("UPDATE client SET mail='".$mail."',adresse='".$adresse."',tel=".$tel.",prenom='".$prenom."',nom='".$nom."',numSiret='".$siret."',numSiren='".$siren."';");
-		$requete->execute();
-		$_SESSION['mail']=$_POST['mail'];
-		$_SESSION['adresse']=$_POST['adresse'];
-		$_SESSION['tel']=$_POST['tel'];
-		$_SESSION['prenom']=$_POST['prenom'];
-		$_SESSION['nom']=$_POST['nom'];
-		$_SESSION['numSiret']=$_POST['numSiret'];
-		$_SESSION['numSiren']=$_POST['numSiren'];
-		echo "<script type='text/javascript'>document.location.replace('modifProfil.php');</script>";
-		}
-		else{
-			$erreur="<br><br><strong>Votre adresse mail n'est pas valide</strong>";
-		}
+        {
+			if ($siret == '')
+        {
+            $siret = 'null';
+        }
+        if ($siren == '')
+        {
+            $siren = 'null';
+        }
+        if ($tel == '')
+        {
+            $tel = 'null';
+        }
+				$requete = $bdd->prepare("UPDATE client SET mail='".$mail."',adresse='".$adresse."',tel=".$tel.",prenom='".$prenom."',nom='".$nom."',numSiret=".$siret.",numSiren=".$siren." where codeC = ".$_SESSION['id'].";");
+					$requete->execute();
+					$_SESSION['mail']=$_POST['mail'];
+					$_SESSION['adresse']=$_POST['adresse'];
+					$_SESSION['tel']=$_POST['tel'];
+					$_SESSION['prenom']=$_POST['prenom'];
+					$_SESSION['nom']=$_POST['nom'];
+					$_SESSION['numSiret']=$_POST['numSiret'];
+					$_SESSION['numSiren']=$_POST['numSiren'];
+					echo "<script type='text/javascript'>document.location.replace('modifProfil.php');</script>";
+					}
+					else{
+						$erreur="<br><br><strong>Votre adresse mail n'est pas valide</strong>";
+					}
 	}
 	?>
 
